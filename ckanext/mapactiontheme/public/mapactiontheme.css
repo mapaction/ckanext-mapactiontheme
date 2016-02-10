@@ -1,1 +1,6 @@
-.masthead { background: #2f2776; }
+.masthead { 
+    background: #2f2776; 
+    background-image: url("header-bg.png"); 
+    background-repeat: no-repeat; 
+}
+
