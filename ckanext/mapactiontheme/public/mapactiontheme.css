@@ -2,7 +2,7 @@ body {
     background-color: #676767;
 }
 
-.account-masthead, .masthead, .homepage, .site-footer {
+.account-masthead, .masthead, .homepage, .site-footer, [role="main"] {
     max-width: 950px;
     margin: 0 auto;
 }
