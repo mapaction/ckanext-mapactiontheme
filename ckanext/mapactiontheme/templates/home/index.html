@@ -1,0 +1,27 @@
+{% ckan_extends %}
+
+{% block content %}
+    <div role="main">
+        <div id="content" class="container">
+
+            <div class="toolbar">
+              {% block breadcrumb %}
+                  <ol class="breadcrumb">
+                    {% snippet 'snippets/home_breadcrumb_item.html' %}
+                    {% block breadcrumb_content %}{% endblock %}
+                  </ol>
+              {% endblock %}
+            </div>
+
+        <div id="catalog-title">
+            <h1>Product Catalogue</h1>
+        </div>
+
+    {{ super() }}
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
