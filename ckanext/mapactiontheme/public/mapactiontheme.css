@@ -22,11 +22,32 @@ body {
     width: 260px;
 }
 
-#catalog_title h1 {
-    font-size: 20px;
-    line-height: 1;
-    margin-left: 25px;
+.toolbar {
+    padding: 0px;
+    margin-bottom: 4px;
 }
+
+.toolbar .breadcrumb {
+    font-family: arial,verdana,helvetica,sans-serif;
+    color: #333;
+    margin-left: 20px;
+    line-height: 30px;
+    font-size: 12.5px;
+}
+
+#catalog-title {
+    margin-left: 0px;
+    clear: both;
+    color: #2f2776;
+    background: #ffffff;
+    padding: 10px 20px 20px 20px;
+}
+
+#catalog-title h1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
 
 .site-footer {
     background-color: #e3e4ec;
@@ -59,7 +80,13 @@ body {
 }
 
 [role="main"] {
-    background: #f0f0f0;
+    background: #ffffff;
+    padding-top: 0px;
+}
+
+.wrapper {
+    border: 0;
+    box-shadow: none;
 }
 
 #home_dataset_list {
