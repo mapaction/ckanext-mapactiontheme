@@ -22,6 +22,11 @@ body {
     width: 260px;
 }
 
+#catalog_title h1 {
+    font-size: 20px;
+    line-height: 1;
+    margin-left: 25px;
+}
 
 .site-footer {
     background-color: #e3e4ec;
