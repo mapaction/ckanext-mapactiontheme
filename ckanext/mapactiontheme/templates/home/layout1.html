@@ -1,11 +1,21 @@
 {% ckan_extends %}
 
 {% block promoted %}
-{% snippet 'home/snippets/featured_organization.html' %}
+  {% if h.check_access('package_create') %}
+    {% link_for _('Import MapAction Zip File'), controller='ckanext.mapactionimporter.controllers.zipimport:ZipImportController', action='new', class_='btn', icon='plus-sign-alt' %}
+  {% endif %}
+
+<div id="home_dataset_list">
+{% snippet 'snippets/package_list.html', packages=c.datasets, hide_resources=True %}
+</div>
 {% endblock %}
 
 {% block search %}
 {% endblock %}
+
+{% block featured_group %}
+{% endblock %}
+
 
 {% block featured_organization %}
 {% endblock %}
