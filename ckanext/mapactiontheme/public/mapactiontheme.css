@@ -1,9 +1,7 @@
+/* CSS for the whole site */
+
 body {
     background-color: #676767;
-}
-
-
-.account-masthead, .masthead, .homepage, .site-footer, [role="main"] {
     max-width: 950px;
     margin: 0 auto;
 }
@@ -36,7 +34,7 @@ body {
     background: #ffffff;
 }
 
-#catalog-title {
+.catalog-title {
     margin-left: 0px;
     clear: both;
     color: #2f2776;
@@ -44,27 +42,36 @@ body {
     padding: 10px 20px 20px 20px;
 }
 
-#catalog-title h1 {
-    font-size: 24px;
+.catalog-title h1 {
     line-height: 1;
+    font-size: 24px;
 }
 
+.span6 {
+    padding-left: 20px;
+}
+
+[role="main"] {
+    background: #ffffff;
+    padding-top: 0px;
+}
+
+.wrapper {
+    border: 0;
+    box-shadow: none;
+}
 
 .site-footer {
     background-color: #e3e4ec;
     color: #000000;
-    min-height: 25px;
-    height: 25px;
+    min-height: 0px;
     padding: 0px;
-    font-size: 80%;
-}
-
-.site-footer .span8 {
-    width: 650px;
+    font-size: 10px;
+    line-height: 10px;
+    padding-top: 5px;
 }
 
 .site-footer .span4 {
-    width: 200px;
     float: right;
 }
 
@@ -76,14 +83,15 @@ body {
     text-align: right;
 }
 
-.span6 {
-    padding-left: 20px;
+
+/* Home page */
+
+.simple-dataset-list {
+    margin-top: 30px;
 }
 
-[role="main"] {
-    background: #ffffff;
-    padding-top: 0px;
-}
+
+/* Package read page */
 
 #product-details .span9 {
     float: none;
@@ -103,11 +111,4 @@ body {
 }
 
 
-.wrapper {
-    border: 0;
-    box-shadow: none;
-}
 
-#home_dataset_list {
-    margin-top: 30px;
-}
