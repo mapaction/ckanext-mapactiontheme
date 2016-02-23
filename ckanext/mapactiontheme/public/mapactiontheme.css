@@ -1,9 +1,7 @@
+/* CSS for the whole site */
+
 body {
     background-color: #676767;
-}
-
-
-.account-masthead, .masthead, .homepage, .site-footer, [role="main"] {
     max-width: 950px;
     margin: 0 auto;
 }
@@ -36,37 +34,11 @@ body {
     background: #ffffff;
 }
 
-#catalog-title {
+.catalog-title {
     margin-left: 0px;
     clear: both;
     background: #ffffff;
     padding: 10px 20px 20px 20px;
-}
-
-.site-footer {
-    background-color: #e3e4ec;
-    color: #000000;
-    min-height: 25px;
-    height: 25px;
-    padding: 0px;
-    font-size: 80%;
-}
-
-.site-footer .span8 {
-    width: 650px;
-}
-
-.site-footer .span4 {
-    width: 200px;
-    float: right;
-}
-
-.site-footer a {
-    color: #000000;
-}
-
-.attribution {
-    text-align: right;
 }
 
 .span6 {
@@ -78,27 +50,55 @@ body {
     padding-top: 0px;
 }
 
-#product-details .span9 {
+.wrapper {
+    border: 0;
+    box-shadow: none;
+}
+
+.site-footer {
+    background-color: #e3e4ec;
+    color: #000000;
+    min-height: 0px;
+    padding: 0px;
+    font-size: 10px;
+    line-height: 10px;
+    padding-top: 5px;
+}
+
+.site-footer .span4 {
+    float: right;
+}
+
+.site-footer a {
+    color: #000000;
+}
+
+.attribution {
+    text-align: right;
+}
+
+
+/* Home page */
+
+.simple-dataset-list {
+    margin-top: 30px;
+}
+
+
+/* Package read page */
+
+.package-read .span9 {
     float: none;
     margin-left: 10px;
 }
 
-#product-details .page-header {
+.package-read .page-header {
     background: none;
-}
-
-#product-details .nav-tabs {
-    display: none;   
-}
-
-#product-details .page-header {
     border-bottom: none;
 }
 
-
-.wrapper {
-    border: 0;
-    box-shadow: none;
+.package-read .nav-tabs {
+    display: none;   
 }
 
 #home_dataset_list {
@@ -162,8 +162,6 @@ body {
     border-bottom-color: #333;
 }
 
-
-
 a {
     color: #3c60ad;
 }
@@ -192,5 +190,4 @@ a:hover {
 .nav-item.active>a:hover:before {
     background-image: url("nav-active-roll-2.png");
 }
-
 
