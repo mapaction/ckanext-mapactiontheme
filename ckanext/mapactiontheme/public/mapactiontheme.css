@@ -37,14 +37,8 @@ body {
 .catalog-title {
     margin-left: 0px;
     clear: both;
-    color: #2f2776;
     background: #ffffff;
     padding: 10px 20px 20px 20px;
-}
-
-.catalog-title h1 {
-    line-height: 1;
-    font-size: 24px;
 }
 
 .span6 {
@@ -107,6 +101,93 @@ body {
     display: none;   
 }
 
+#home_dataset_list {
+    margin-top: 30px;
+}
+
+.dataset-heading a, .resource-item .heading {
+    color: #3c60ad;
+}
 
 
+.resource-item .heading:hover {
+    color: #263e76;
+}
+
+
+.btn{
+    color: #fff; 
+    text-shadow: 0 1px 1px #333;
+    background-color: #3c60ad;
+    Background-image: none;
+    Border: none;
+}
+
+.btn-primary {
+    color: #100b00; 
+    background-color: #fcb127;
+    text-shadow: 0 1px 1px #fdd488;
+    Background-image: none;
+    Border: none;
+}
+
+.btn:hover { 
+    color: #fff; 
+    background-color: #263e76;
+    text-shadow: 0 1px 1px #333;
+    Background-image: none;
+    Border: none;
+}
+
+.btn-primary:hover { 
+    color: #100b00; 
+    background-color: #ed9b03;
+    text-shadow: 0 1px 1px #fcb127;
+    Background-image: none;
+    Border: none;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+    background-color: #ed9b03;
+    color: #333;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: #263e76;
+    background-image: None;
+}
+
+.btn-primary .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+
+a {
+    color: #3c60ad;
+}
+
+a:hover {
+    color: #263e76;
+}
+
+.module-narrow .nav-item>a:hover {
+    color: #333;
+}
+
+.nav-item.active>a {
+    background-color: #3c60ad;
+}
+
+.nav-item.active>a:hover {
+    background-color: #263e76;
+    color: #fff;
+}
+
+.nav-item.active>a:before {
+    background-image: url("nav-active-2.png");
+}
+
+.nav-item.active>a:hover:before {
+    background-image: url("nav-active-roll-2.png");
+}
 
