@@ -80,10 +80,19 @@ body {
 
 /* Home page */
 
-.simple-dataset-list {
+.simple-event-list {
     margin-top: 30px;
 }
 
+.simple-event-list ul {
+    list-style: none;
+}
+
+.simple-event-list li {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2em;
+}
 
 /* Package read page */
 
