@@ -1,14 +1,19 @@
 {% ckan_extends %}
 
 
+
 {% block promoted %}
+
     {% block promoted_action %}
         {{ super() }}
     {% endblock %}
+
 <div class="simple-dataset-list">
-{% snippet 'snippets/package_list.html', packages=c.datasets, hide_resources=True %}
+    {% snippet 'snippets/package_list.html', packages=c.datasets, hide_resources=True %}
 </div>
+
 {% endblock %}
+
 
 {% block search %}
 {% endblock %}
