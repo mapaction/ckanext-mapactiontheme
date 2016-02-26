@@ -34,13 +34,6 @@ body {
     background: #ffffff;
 }
 
-.catalog-title {
-    margin-left: 0px;
-    clear: both;
-    background: #ffffff;
-    padding: 10px 20px 20px 20px;
-}
-
 .span6 {
     padding-left: 20px;
 }
@@ -80,6 +73,22 @@ body {
 
 /* Home page */
 
+.catalog-title {
+    margin-left: 0px;
+    clear: both;
+    background: #ffffff;
+    padding: 10px 20px 20px 20px;
+}
+
+.catalog-title h1 {
+    float: left;
+}
+
+.featured-actions {
+    float: right;
+    margin-right: 20px;
+}
+
 .simple-event-list {
     margin-top: 30px;
 }
@@ -105,21 +114,23 @@ ul.simple-event-list {
     font-size: 14px;
 }
 
-/* Package read page */
+/* Package and Group read pages */
 
-.package-read .span9 {
+.package-read .span9, .group-read .span9 {
     float: none;
     margin-left: 10px;
 }
 
-.package-read .page-header {
+.package-read .page-header, .group-read .page-header {
     background: none;
     border-bottom: none;
 }
 
-.package-read .nav-tabs {
+.package-read .nav-tabs, .group-read .nav-tabs {
     display: none;   
 }
+
+
 
 #home_dataset_list {
     margin-top: 30px;
