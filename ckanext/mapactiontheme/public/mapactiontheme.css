@@ -84,14 +84,25 @@ body {
     margin-top: 30px;
 }
 
-.simple-event-list ul {
+ul.simple-event-list {
     list-style: none;
 }
 
 .simple-event-list li {
+    float: left;
+    width: 45%;
+    margin-right: 5%;
+    min-width: 200px;
+}
+
+.simple-event-list li a {
     font-size: 20px;
     font-weight: bold;
     line-height: 2em;
+}
+
+.simple-event-list p {
+    font-size: 14px;
 }
 
 /* Package read page */
