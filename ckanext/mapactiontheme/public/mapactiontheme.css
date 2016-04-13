@@ -116,7 +116,7 @@ ul.simple-event-list {
 
 /* Package and Group read pages */
 
-.package-read .span9, .group-read .span9 {
+.group-read .span9 {
     float: none;
     margin-left: 10px;
 }
