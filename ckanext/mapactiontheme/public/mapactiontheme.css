@@ -6,10 +6,10 @@ body {
     margin: 0 auto;
 }
 
-.masthead { 
-    background: #2f2776; 
-    background-image: url("header-bg.png"); 
-    background-repeat: no-repeat; 
+.masthead {
+    background: #2f2776;
+    background-image: url("header-bg.png");
+    background-repeat: no-repeat;
 }
 
 .masthead .nav-collapse {
@@ -127,7 +127,7 @@ ul.simple-event-list {
 }
 
 .package-read .nav-tabs, .group-read .nav-tabs {
-    display: none;   
+    display: none;
 }
 
 
@@ -147,7 +147,7 @@ ul.simple-event-list {
 
 
 .btn{
-    color: #fff; 
+    color: #fff;
     text-shadow: 0 1px 1px #333;
     background-color: #3c60ad;
     Background-image: none;
@@ -155,23 +155,23 @@ ul.simple-event-list {
 }
 
 .btn-primary {
-    color: #100b00; 
+    color: #100b00;
     background-color: #fcb127;
     text-shadow: 0 1px 1px #fdd488;
     Background-image: none;
     Border: none;
 }
 
-.btn:hover { 
-    color: #fff; 
+.btn:hover {
+    color: #fff;
     background-color: #263e76;
     text-shadow: 0 1px 1px #333;
     Background-image: none;
     Border: none;
 }
 
-.btn-primary:hover { 
-    color: #100b00; 
+.btn-primary:hover {
+    color: #100b00;
     background-color: #ed9b03;
     text-shadow: 0 1px 1px #fcb127;
     Background-image: none;
@@ -222,3 +222,7 @@ a:hover {
     background-image: url("nav-active-roll-2.png");
 }
 
+.mapaction-feed {
+    float:left;
+    clear:both;
+}
