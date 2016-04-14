@@ -22,10 +22,10 @@
 
         {% snippet "mapactionimporter/snippets/import_button.html" %}
         </div>
+        <div class="mapaction-feed">
+          <a href="{{ h.url_for(controller='ckanext.mapactiongeorss.controllers.feed:MapActionGeoRssFeedController', action='general') }}"><i class="ckan-icon ckan-icon-feed"></i><span> {{ _('MapAction Maps') }}</span></a>
         </div>
-        <ul class="nav nav-simple mapaction-feed">
-          <li class="nav-item"><a href="{{ h.url_for(controller='ckanext.mapactiongeorss.controllers.feed:MapActionGeoRssFeedController', action='general') }}"><i class="ckan-icon ckan-icon-feed"></i><span> {{ _('MapAction Maps') }}</span></a></li>
-        </ul>
+        </div>
 
     {{ super() }}
 
