@@ -1,0 +1,21 @@
+{% ckan_extends %}
+
+
+  {% block nums %}
+    {% if h.hide_follows() %}
+      {# overriding the nums block to turn it off #}
+    {% else %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+
+  {% block follow %}
+    {% if h.hide_follows() %}
+      {# overriding the follow block to turn it off #}
+    {% else %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+
