@@ -226,3 +226,11 @@ a:hover {
     float:left;
     clear:both;
 }
+
+.login-container {
+    margin-top:2em;
+}
+
+#g-signin-button {
+    width:auto;
+}
