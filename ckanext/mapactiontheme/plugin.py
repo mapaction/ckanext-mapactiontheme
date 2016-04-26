@@ -18,19 +18,32 @@ def hide_follows():
     value = toolkit.asbool(value)
     return value
 
+def unauthorized(context, data_dict=None):
+    return {'success': False, 'msg': 'Organizations are not available.'}
 
 class MapactionthemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IAuthFunctions)
+
     
     # IConfigurer
-
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'mapactiontheme')
 
-    def get_helpers(self):
+    def get_auth_functions(self):
+        return {
+            'group_create': unauthorized,
+            'organization_show': unauthorized,
+            'organization_list': unauthorized,
+            'organization_create': unauthorized,
+            'organization_member_create': unauthorized,
+            'organization_update': unauthorized,
+            'organization_delete': unauthorized        
+        }
 
+    def get_helpers(self):
         return {'hide_follows': hide_follows
                 }
