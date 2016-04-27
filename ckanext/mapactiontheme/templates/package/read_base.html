@@ -1,0 +1,23 @@
+{% ckan_extends %}
+
+  {% block package_organization %}
+    {# override to allow config file to set visibility #}
+    {% if h.show_organization() %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+  {% block package_social %}
+    {# override to allow config file to set visibility #}
+    {% if h.show_social() %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+  {% block package_license %}
+    {# override to allow config file to set visibility #}
+    {% if h.show_license) %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+

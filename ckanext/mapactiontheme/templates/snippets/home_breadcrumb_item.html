@@ -1,4 +1,6 @@
 {# Used to insert the home icon into a breadcrumb #}
 You are here: 
-<li class="home"><a href="http://mapaction.org">Home</a></li>
-<li class="home"><a href="{{ h.url('home') }}">Maps and Data<span> {{ _('Home') }}</span></a></li>
+{% if h.home_page_link() %}
+<li class="home"><a href="{{ h.home_page_link() }}">Home</a></li>
+{% endif %}
+<li class="home"><a href="{{ h.url('home') }}">{{ h.ckan_home_page_name() }}<span> {{ _('Home') }}</span></a></li>

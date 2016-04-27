@@ -2,21 +2,106 @@ import pylons.config as config
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-def hide_follows():
-    '''Hides the follows section that would allow users to follow datasets
+def show_follows():
+    '''Shows the follows section that would allow users to follow datasets
 
-    To enable hiding the most popular groups, add this line to the
+    To enable hiding this section add this line to the
     [app:main] section of your CKAN config file::
 
-      ckan.mapactiontheme.hide_follows = True
+      ckan.mapactiontheme.show_follows = False
 
-    Returns ``False`` by default, if the setting is not in the config file.
+    Returns ``True`` by default, if the setting is not in the config file.
 
     :rtype: boolean
     '''
-    value = config.get('ckan.mapactiontheme.hide_follows', False)
+    value = config.get('ckan.mapactiontheme.show_follows', True)
     value = toolkit.asbool(value)
     return value
+
+
+def show_license():
+    '''Shows the license section
+
+    To enable hiding this section add this line to the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.show_license = False
+
+    Returns ``True`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.show_license', True)
+    value = toolkit.asbool(value)
+    return value
+
+
+def show_organization():
+    '''Show or hide the entire concept of organizations (this affects several templates)
+
+    To hide organizations add this line to the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.show_organization = False
+
+    Returns ``True`` by default, if the setting is not in the config file.
+
+    Templates this setting affects:
+    * package/read_base.html
+    * package/base.html
+
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.show_organization', True)
+    value = toolkit.asbool(value)
+    return value
+
+
+def show_social():
+    '''Shows the social links section 
+
+    To enable hiding this section add this line to the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.show_social = False
+
+    Returns ``True`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.show_social', True)
+    value = toolkit.asbool(value)
+    return value
+
+
+def ckan_home_page_name():
+    '''Get the name of the CKAN home page 
+
+    To set add this under the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.ckan_home_page_name = Maps and Data
+
+    :rtype: string
+    '''
+    value = config.get('ckan.mapactiontheme.ckan_home_page_name', 'Home')
+    return value
+
+
+def home_page_link():
+    '''Get the link for the home page if ckan is deployed as part of a site.
+
+    To set add this under the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.home_page_link = http://mapaction.org
+
+    :rtype: string
+    '''
+    value = config.get('ckan.mapactiontheme.home_page_link')
+    return value
+
 
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
@@ -33,17 +118,29 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'mapactiontheme')
 
+
     def get_auth_functions(self):
-        return {
-            'group_create': unauthorized,
-            'organization_show': unauthorized,
-            'organization_list': unauthorized,
-            'organization_create': unauthorized,
-            'organization_member_create': unauthorized,
-            'organization_update': unauthorized,
-            'organization_delete': unauthorized        
-        }
+
+        permissions = {}
+        if not show_organization():
+            permissions = {
+                'group_create': unauthorized,
+                'organization_show': unauthorized,
+                'organization_list': unauthorized,
+                'organization_create': unauthorized,
+                'organization_member_create': unauthorized,
+                'organization_update': unauthorized,
+                'organization_delete': unauthorized        
+            }
+
+        return permissions
+
 
     def get_helpers(self):
-        return {'hide_follows': hide_follows
+        return {'show_follows': show_follows,
+                'show_social': show_social,
+                'show_organization': show_organization,
+                'show_license': show_license,
+                'ckan_home_page_name': ckan_home_page_name,
+                'home_page_link': home_page_link
                 }
