@@ -234,3 +234,7 @@ a:hover {
 #g-signin-button {
     width:auto;
 }
+
+.pagination {
+    clear:both;
+}
