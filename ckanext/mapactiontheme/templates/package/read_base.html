@@ -16,7 +16,7 @@
 
   {% block package_license %}
     {# override to allow config file to set visibility #}
-    {% if h.show_license) %}
+    {% if h.show_license() %}
       {{ super() }}
     {% endif %}
   {% endblock %}
