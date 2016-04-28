@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+  {% block resource_item_explore %}
+  {% if not url_is_edit %}
+  <div class="btn btn-primary list-item-btn">
+      {% if res.url and h.is_url(res.url) %}
+        <a href="{{ res.url }}" class="resource-url-analytics btn-primary" target="_blank">
+          {% if res.has_views %}
+            <i class="icon-download"></i>
+            {{ _('Download') }}
+          {% else %}
+            <i class="icon-external-link"></i>
+            {{ _('Go to resource') }}
+          {% endif %}
+        </a>
+      {% endif %}
+  </div>
+  {% endif %}
+  {% endblock %}

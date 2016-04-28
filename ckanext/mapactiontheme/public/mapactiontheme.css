@@ -193,6 +193,12 @@ ul.simple-event-list {
     border-bottom-color: #333;
 }
 
+.list-item-btn {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+}
+
 a {
     color: #3c60ad;
 }
