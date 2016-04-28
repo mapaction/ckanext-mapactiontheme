@@ -170,6 +170,10 @@ ul.simple-event-list {
     Border: none;
 }
 
+.btn a:hover {
+    text-decoration: none;
+}
+
 .btn-primary:hover {
     color: #100b00;
     background-color: #ed9b03;
