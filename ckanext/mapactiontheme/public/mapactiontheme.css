@@ -126,7 +126,7 @@ ul.simple-event-list {
     border-bottom: none;
 }
 
-.package-read .nav-tabs, .group-read .nav-tabs {
+.group-read .nav-tabs {
     display: none;
 }
 

@@ -1,5 +1,18 @@
 {% ckan_extends %}
 
+  {% block content_primary_nav %}
+    {% set show_groups = h.show_groups_tab() and h.check_access('package_create') %}
+    {% if show_groups or h.show_activity_tab() %}
+      {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
+    {% endif %}    
+    {% if show_groups %}
+      {{ h.build_nav_icon('dataset_groups', _(h.plural_group_name()), id=pkg.name) }}
+    {% endif %}  
+    {% if h.show_activity_tab() %}
+      {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+    {% endif %}
+  {% endblock %}
+
   {% block package_organization %}
     {# override to allow config file to set visibility #}
     {% if h.show_organization() %}

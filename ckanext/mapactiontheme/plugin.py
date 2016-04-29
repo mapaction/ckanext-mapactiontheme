@@ -2,6 +2,38 @@ import pylons.config as config
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+def group_name():
+    '''Allows renaming of "Group"
+
+    To change this setting add to the 
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.group_name = MyGroupName
+
+    Returns ``Group`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.group_name', 'Group')
+    return value
+
+
+def plural_group_name():
+    '''Allows renaming of "Groups", the plural form. 
+
+    To change this setting add to the 
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.plural_group_name = MyGroupNames
+
+    Returns ``Group`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.plural_group_name', group_name() + 's')
+    return value
+
+
 def show_follows():
     '''Shows the follows section that would allow users to follow datasets
 
@@ -61,7 +93,7 @@ def show_organization():
 def show_social():
     '''Shows the social links section 
 
-    To enable hiding this section add this line to the
+    To hide this section add this line to the
     [app:main] section of your CKAN config file::
 
       ckan.mapactiontheme.show_social = False
@@ -71,6 +103,40 @@ def show_social():
     :rtype: boolean
     '''
     value = config.get('ckan.mapactiontheme.show_social', True)
+    value = toolkit.asbool(value)
+    return value
+
+
+def show_groups_tab():
+    '''Shows the groups tab in places like the package_read template. 
+
+    To hide this section add this line to the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.show_groups_tab = False
+
+    Returns ``True`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.show_groups_tab', True)
+    value = toolkit.asbool(value)
+    return value
+
+
+def show_activity_tab():
+    '''Shows the Activity Stream tab in places like the package_read template. 
+
+    To hide this section add this line to the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.show_activity_tab = False
+
+    Returns ``True`` by default, if the setting is not in the config file.
+
+    :rtype: boolean
+    '''
+    value = config.get('ckan.mapactiontheme.show_activity_tab', True)
     value = toolkit.asbool(value)
     return value
 
@@ -137,10 +203,15 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
 
 
     def get_helpers(self):
-        return {'show_follows': show_follows,
+        return {
+                'group_name': group_name,
+                'plural_group_name': plural_group_name,
+                'show_follows': show_follows,
                 'show_social': show_social,
                 'show_organization': show_organization,
                 'show_license': show_license,
+                'show_groups_tab': show_groups_tab,
+                'show_activity_tab': show_activity_tab,
                 'ckan_home_page_name': ckan_home_page_name,
                 'home_page_link': home_page_link
                 }
