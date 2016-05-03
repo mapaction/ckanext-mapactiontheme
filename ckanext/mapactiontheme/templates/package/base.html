@@ -8,7 +8,7 @@
   {% else %}
     {% if pkg %}
       {% set dataset = pkg.title or pkg.name %}
-      {% if c.pkg_dict.groups[0] %}
+      {% if c.pkg_dict and c.pkg_dict.groups and c.pkg_dict.groups[0] %}
         {% set group = c.pkg_dict.groups[0] %}
         <li>{% link_for group.display_name|truncate(35), controller='group', action='read', id=group.name %}</li>
       {% else %}
