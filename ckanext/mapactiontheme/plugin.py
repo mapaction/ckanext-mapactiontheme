@@ -176,6 +176,17 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IRoutes, inherit=True)
+
+
+    # IRoutes
+    def before_map(self, map):
+
+        map.connect('/dataset/groups/{id}',
+            controller='ckanext.mapactiontheme.controllers.package:MapactionPackageController',
+            action='groups')
+
+        return map
 
     
     # IConfigurer
