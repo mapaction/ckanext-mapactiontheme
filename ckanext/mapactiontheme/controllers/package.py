@@ -8,8 +8,6 @@ from ckan.common import c
 class MapactionPackageController(package.PackageController):
 
     def groups(self, id):
-        import ipdb
-        ipdb.set_trace()
 
         q = model.Session.query(model.Group) \
             .filter(model.Group.is_organization == False) \

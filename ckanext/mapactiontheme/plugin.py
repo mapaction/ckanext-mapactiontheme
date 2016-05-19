@@ -172,6 +172,10 @@ def home_page_link():
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
 
+def authorized(context, data_dict=None):
+    return {'success': True}
+
+
 class MapactionthemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
@@ -195,24 +199,26 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'mapactiontheme')
 
-
+    #IAuthFunctions
     def get_auth_functions(self):
 
         permissions = {}
         if not show_organization():
             permissions = {
                 'group_create': unauthorized,
-                'organization_show': unauthorized,
+                'member_create': authorized,
+                'authorized': unauthorized,
                 'organization_list': unauthorized,
                 'organization_create': unauthorized,
                 'organization_member_create': unauthorized,
                 'organization_update': unauthorized,
-                'organization_delete': unauthorized        
+                'organization_delete': unauthorized
             }
 
         return permissions
 
 
+    #ITemplateHelpers
     def get_helpers(self):
         return {
                 'group_name': group_name,
