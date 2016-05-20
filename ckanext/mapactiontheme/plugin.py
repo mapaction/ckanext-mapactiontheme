@@ -183,6 +183,14 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IFacets, inherit=True)
+
+    # IFacets
+    def dataset_facets(self, facets_dict, package_type):
+        facets_dict.pop('organization', False)
+        facets_dict.pop('tags', False)
+
+        return facets_dict
 
     # IRoutes
     def before_map(self, map):
