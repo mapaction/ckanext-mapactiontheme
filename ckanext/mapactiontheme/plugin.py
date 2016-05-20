@@ -192,6 +192,13 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
 
         return facets_dict
 
+    # IFacets
+    def organization_facets(self, facets_dict, group_type, package_type):
+        facets_dict.pop('organization', False)
+        facets_dict.pop('tags', False)
+
+        return facets_dict
+
     # IRoutes
     def before_map(self, map):
         map.connect(

@@ -35,3 +35,37 @@ class DatasetFacetsTest(unittest.TestCase):
                                             'dataset')
 
         self.assertEquals(facets_dict, {})
+
+
+class OrganizationFacetsTest(unittest.TestCase):
+    def setUp(self):
+        super(OrganizationFacetsTest, self).setUp()
+        self.default_facet_titles = {'organization': _('Organizations'),
+                                     'groups': _('Groups'),
+                                     'tags': _('Tags'),
+                                     'res_format': _('Formats'),
+                                     'license_id': _('Licenses')}
+
+    def test_removes_organization(self):
+        plugin = MapactionthemePlugin()
+        facets_dict = plugin.organization_facets(self.default_facet_titles,
+                                                 'organization',
+                                                 'dataset')
+
+        self.assertTrue('organization' not in facets_dict)
+
+    def test_removes_tags(self):
+        plugin = MapactionthemePlugin()
+        facets_dict = plugin.organization_facets(self.default_facet_titles,
+                                                 'organization',
+                                                 'dataset')
+
+        self.assertTrue('tags' not in facets_dict)
+
+    def test_facet_dict_is_left_empty(self):
+        plugin = MapactionthemePlugin()
+        facets_dict = plugin.organization_facets({},
+                                                 'organization',
+                                                 'dataset')
+
+        self.assertEquals(facets_dict, {})
