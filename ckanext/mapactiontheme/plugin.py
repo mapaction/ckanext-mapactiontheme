@@ -2,10 +2,11 @@ import pylons.config as config
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+
 def group_name():
     '''Allows renaming of "Group"
 
-    To change this setting add to the 
+    To change this setting add to the
     [app:main] section of your CKAN config file::
 
       ckan.mapactiontheme.group_name = MyGroupName
@@ -19,9 +20,9 @@ def group_name():
 
 
 def plural_group_name():
-    '''Allows renaming of "Groups", the plural form. 
+    '''Allows renaming of "Groups", the plural form.
 
-    To change this setting add to the 
+    To change this setting add to the
     [app:main] section of your CKAN config file::
 
       ckan.mapactiontheme.plural_group_name = MyGroupNames
@@ -91,7 +92,7 @@ def show_organization():
 
 
 def show_social():
-    '''Shows the social links section 
+    '''Shows the social links section
 
     To hide this section add this line to the
     [app:main] section of your CKAN config file::
@@ -108,7 +109,7 @@ def show_social():
 
 
 def show_groups_tab():
-    '''Shows the groups tab in places like the package_read template. 
+    '''Shows the groups tab in places like the package_read template.
 
     To hide this section add this line to the
     [app:main] section of your CKAN config file::
@@ -125,7 +126,7 @@ def show_groups_tab():
 
 
 def show_activity_tab():
-    '''Shows the Activity Stream tab in places like the package_read template. 
+    '''Shows the Activity Stream tab in places like the package_read template.
 
     To hide this section add this line to the
     [app:main] section of your CKAN config file::
@@ -142,7 +143,7 @@ def show_activity_tab():
 
 
 def ckan_home_page_name():
-    '''Get the name of the CKAN home page 
+    '''Get the name of the CKAN home page
 
     To set add this under the
     [app:main] section of your CKAN config file::
@@ -172,6 +173,7 @@ def home_page_link():
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
 
+
 def authorized(context, data_dict=None):
     return {'success': True}
 
@@ -182,17 +184,15 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IRoutes, inherit=True)
 
-
     # IRoutes
     def before_map(self, map):
-
-        map.connect('/dataset/groups/{id}',
+        map.connect(
+            '/dataset/groups/{id}',
             controller='ckanext.mapactiontheme.controllers.package:MapactionPackageController',
             action='groups')
 
         return map
 
-    
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
@@ -217,18 +217,17 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
 
         return permissions
 
-
     #ITemplateHelpers
     def get_helpers(self):
         return {
-                'group_name': group_name,
-                'plural_group_name': plural_group_name,
-                'show_follows': show_follows,
-                'show_social': show_social,
-                'show_organization': show_organization,
-                'show_license': show_license,
-                'show_groups_tab': show_groups_tab,
-                'show_activity_tab': show_activity_tab,
-                'ckan_home_page_name': ckan_home_page_name,
-                'home_page_link': home_page_link
-                }
+            'group_name': group_name,
+            'plural_group_name': plural_group_name,
+            'show_follows': show_follows,
+            'show_social': show_social,
+            'show_organization': show_organization,
+            'show_license': show_license,
+            'show_groups_tab': show_groups_tab,
+            'show_activity_tab': show_activity_tab,
+            'ckan_home_page_name': ckan_home_page_name,
+            'home_page_link': home_page_link
+        }
