@@ -1,12 +1,22 @@
 {% ckan_extends %}
 
+  {% block heading %}
+    {% set thumbnail = h.thumbnail_url(package) %}
+    {% if  thumbnail %}
+      <img class="dataset-thumbnail" src="{{ thumbnail }}">
+    {% endif %}
+    {{ super() }}
+  {% endblock %}
+
 
   {% block resources_inner %}
     {% for resource in package.resources %}
-    <li>
-      <a href="{{ resource.url }}" class="label" data-format="{{ resource.format|lower }}">{{ resource.format }}
-          <i class="icon-download"></i>
-      </a>
-    </li>
+      {% if resource.name != "thumbnail.png" %}
+        <li>
+          <a href="{{ resource.url }}" class="label" data-format="{{ resource.format|lower }}">{{ resource.format }}
+              <i class="icon-download"></i>
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   {% endblock %}

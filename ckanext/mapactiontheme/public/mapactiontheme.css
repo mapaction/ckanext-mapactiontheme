@@ -71,6 +71,16 @@ body {
 }
 
 
+.dataset-thumbnail {
+    float: left;
+    padding-right: 20px;
+}
+
+img.dataset-thumbnail {
+    width: 120px;
+    height: 99px;
+}
+
 /* Home page */
 
 .catalog-title {
