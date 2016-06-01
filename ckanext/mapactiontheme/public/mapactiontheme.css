@@ -248,3 +248,7 @@ a:hover {
 .pagination {
     clear:both;
 }
+
+.old-version {
+    font-size:150%;
+}
