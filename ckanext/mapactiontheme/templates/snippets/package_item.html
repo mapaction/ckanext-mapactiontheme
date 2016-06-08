@@ -1,9 +1,11 @@
 {% ckan_extends %}
 
   {% block heading %}
-    {% set thumbnail = h.thumbnail_url(package) %}
+    {% set thumbnail = h.thumbnail_url(package.id) %}
     {% if  thumbnail %}
-      <img class="dataset-thumbnail" src="{{ thumbnail }}">
+      <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}">
+        <img class="dataset-list-thumbnail" src="{{ thumbnail }}">
+      </a>
     {% endif %}
     {{ super() }}
   {% endblock %}
