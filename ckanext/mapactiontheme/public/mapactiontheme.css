@@ -88,6 +88,10 @@ IMG.dataset-thumbnail {
     overflow: auto;
 }
 
+.dataset-content-inner {
+    overflow: hidden;
+}
+
 /* Home page */
 
 .catalog-title {
