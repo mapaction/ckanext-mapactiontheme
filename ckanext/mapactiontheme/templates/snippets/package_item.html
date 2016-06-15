@@ -53,11 +53,15 @@
                 {% block resources_inner %}
                   {% for resource in package.resources %}
                     {% if resource.name != "thumbnail.png" %}
-                      <li>
-                        <a href="{{ resource.url }}" class="label" data-format="{{ resource.format|lower }}">{{ resource.format }}
-                            <i class="icon-download"></i>
-                        </a>
-                      </li>
+                    <li>
+                      <a href="{{ resource.url }}" class="label" data-format="{{ resource.format|lower }}">{{ resource.format }}
+                      {% if resource.format %}
+                         <i class="icon-download"></i>
+                      {% else %}
+                         <i class="icon-link"></i>
+                      {% endif %}
+                      </a>
+                    </li>
                     {% endif %}
                   {% endfor %}
                 {% endblock %}
