@@ -222,6 +222,8 @@ ul.simple-event-list {
     position: absolute;
     right: 10px;
     top: 14px;
+    width: 6.5em;
+    text-align: left;
 }
 
 a {

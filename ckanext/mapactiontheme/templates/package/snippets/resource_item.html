@@ -2,13 +2,18 @@
 
   {% block resource_item_explore %}
   {% if not url_is_edit %}
-  <div class="btn btn-primary list-item-btn">
       {% if res.url and h.is_url(res.url) %}
+  <div class="btn btn-primary list-item-btn">
         <a href="{{ res.url }}" class="resource-url-analytics btn-primary" target="_blank">
+          {% if res.url_type == "upload" %}
             <i class="icon-download"></i>
             {{ _('Download') }}
+          {% else %}
+            <i class="icon-link"></i>
+            {{ _('View') }}
+          {% endif %}
         </a>
-      {% endif %}
   </div>
+      {% endif %}
   {% endif %}
   {% endblock %}
