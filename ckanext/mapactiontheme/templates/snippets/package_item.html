@@ -55,7 +55,7 @@
                     {% if resource.name != "thumbnail.png" %}
                     <li>
                       <a href="{{ resource.url }}" class="label" data-format="{{ resource.format|lower }}">{{ resource.format }}
-                      {% if resource.format %}
+                      {% if resource.url_type == "upload" %}
                          <i class="icon-download"></i>
                       {% else %}
                          <i class="icon-link"></i>
