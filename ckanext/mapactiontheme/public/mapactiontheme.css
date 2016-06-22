@@ -16,6 +16,30 @@ body {
     padding-top: 32px;
 }
 
+
+ 
+
+@media (max-width: 767px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .toolbar .breadcrumb, .toolbar .breadcrumb a {
+    color: #505050 !important;
+  }
+  .toolbar .breadcrumb .home {
+    display: initial;
+  }
+
+}
+
+
+@media (max-width: 979px) {
+    .masthead .nav-collapse {
+        padding-top: 0px;
+    }
+}
+
 .masthead .site-search input {
     width: 260px;
 }
@@ -32,6 +56,11 @@ body {
     line-height: 30px;
     font-size: 12.5px;
     background: #ffffff;
+}
+
+/* Turn off the hamburger that appears on small screens*/
+.navbar .btn-navbar {
+    display: none;
 }
 
 .span6 {
