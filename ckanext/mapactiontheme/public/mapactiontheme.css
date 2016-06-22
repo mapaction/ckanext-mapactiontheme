@@ -17,29 +17,6 @@ body {
 }
 
 
- 
-
-@media (max-width: 767px) {
-  body {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .toolbar .breadcrumb, .toolbar .breadcrumb a {
-    color: #505050 !important;
-  }
-  .toolbar .breadcrumb .home {
-    display: initial;
-  }
-
-}
-
-
-@media (max-width: 979px) {
-    .masthead .nav-collapse {
-        padding-top: 0px;
-    }
-}
-
 .masthead .site-search input {
     width: 260px;
 }
@@ -304,3 +281,32 @@ a:hover {
 .old-version {
     font-size:150%;
 }
+
+
+
+
+@media (max-width: 767px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .toolbar .breadcrumb, .toolbar .breadcrumb a {
+    color: #505050 !important;
+  }
+  .toolbar .breadcrumb .home {
+    display: initial;
+  }
+  .list-item-btn {
+    position: static;
+  }
+  .module-narrow .module-heading, .module-narrow .module-content, .module-narrow .module-footer {
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 979px) {
+    .masthead .nav-collapse {
+        padding-top: 0px;
+    }
+}
+
