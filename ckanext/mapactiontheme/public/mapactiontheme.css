@@ -122,13 +122,12 @@ IMG.dataset-thumbnail {
 
 ul.simple-event-list {
     list-style: none;
+    margin-left: 20px;
 }
 
 .simple-event-list li {
-    float: left;
-    width: 45%;
-    margin-right: 5%;
-    min-width: 200px;
+    max-width: 700px;
+    clear: left;
 }
 
 .simple-event-list li a {
@@ -139,6 +138,13 @@ ul.simple-event-list {
 
 .simple-event-list p {
     font-size: 14px;
+    overflow: hidden;
+}
+
+.simple-event-list .image{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 /* Package and Group read pages */
@@ -282,7 +288,11 @@ a:hover {
     font-size:150%;
 }
 
-
+@media (max-width: 480px) {
+  .simple-event-list .image{
+    display: none;
+  }
+}
 
 
 @media (max-width: 767px) {
