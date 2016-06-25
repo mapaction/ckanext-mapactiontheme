@@ -35,6 +35,10 @@ body {
     background: #ffffff;
 }
 
+.toolbar .home a:hover {
+    text-decoration: underline;
+}
+
 /* Turn off the hamburger that appears on small screens*/
 .navbar .btn-navbar {
     display: none;
@@ -147,6 +151,13 @@ ul.simple-event-list {
     margin-bottom: 20px;
 }
 
+
+.mapaction-feed span {
+    position: relative;
+    top: 4px;
+}
+
+
 /* Package and Group read pages */
 
 .group-read .span9 {
@@ -213,6 +224,10 @@ ul.simple-event-list {
     text-shadow: 0 1px 1px #fcb127;
     Background-image: none;
     Border: none;
+}
+
+.btn-primary:hover a {
+    background-color: #ed9b03;
 }
 
 .btn-group.open .btn-primary.dropdown-toggle {
