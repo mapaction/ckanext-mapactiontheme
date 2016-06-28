@@ -198,7 +198,9 @@ def update_dataset_for_syndication(context, data_dict):
 
     dataset_dict['methodology'] = 'Other'
     methodology = get_pkg_dict_extra(dataset_dict, 'methodology')
-    if methodology is not None:
+    if methodology is None:
+        dataset_dict['method_other'] = 'Not specified'
+    else:
         dataset_dict['method_other'] = methodology
 
     dataset_dict['dataset_source'] = get_pkg_dict_extra(

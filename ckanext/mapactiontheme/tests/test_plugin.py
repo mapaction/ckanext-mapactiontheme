@@ -168,3 +168,11 @@ class UpdateForSyndicationTest(unittest.TestCase):
         self.assertEquals(
             updated_dict['method_other'],
             methodology)
+
+    def test_method_other_set_to_placeholder_if_no_extras(self):
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict={})
+
+        self.assertEquals(
+            updated_dict['method_other'],
+            'Not specified')
