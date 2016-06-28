@@ -1,4 +1,9 @@
+from datetime import datetime
+
 import pylons.config as config
+
+from ckan.lib.helpers import get_pkg_dict_extra
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
@@ -178,12 +183,37 @@ def authorized(context, data_dict=None):
     return {'success': True}
 
 
+def update_dataset_for_syndication(context, data_dict):
+    dataset_dict = data_dict['dataset_dict']
+
+    created = get_pkg_dict_extra(dataset_dict, 'createdate')
+
+    created_date = datetime.strptime(created,
+                                     '%Y-%m-%d %H:%M:%S')
+
+    dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%y')
+    dataset_dict['methodology'] = 'Census'
+    dataset_dict['dataset_source'] = 'MapAction'
+    dataset_dict['groups'] = [{'id': 'afg'}]
+    dataset_dict['data_update_frequency'] = '0'
+
+    return dataset_dict
+
+
 class MapactionthemePlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IActions)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IFacets, inherit=True)
+
+    # IActions
+    def get_actions(self):
+        return {
+            'update_dataset_for_syndication':
+            update_dataset_for_syndication,
+        }
 
     # IFacets
     def dataset_facets(self, facets_dict, package_type):

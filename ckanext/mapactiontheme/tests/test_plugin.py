@@ -1,6 +1,9 @@
 import unittest
 
 from ckan.common import _
+import ckan.tests.helpers as helpers
+import ckan.plugins as plugins
+
 from ckanext.mapactiontheme.plugin import MapactionthemePlugin
 
 
@@ -69,3 +72,27 @@ class OrganizationFacetsTest(unittest.TestCase):
                                                  'dataset')
 
         self.assertEquals(facets_dict, {})
+
+
+class UpdateForSyndicationTest(unittest.TestCase):
+    def setUp(self):
+        super(UpdateForSyndicationTest, self).setUp()
+        plugins.load('mapactiontheme')
+
+    def tearDown(self):
+        plugins.unload('mapactiontheme')
+        super(UpdateForSyndicationTest, self).tearDown()
+
+    def test_dataset_date_is_created_date(self):
+        dataset_dict = {
+            'extras': [{
+                'key': 'createdate',
+                'value': '2016-06-15 03:49:19'},
+            ]
+        }
+
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict=dataset_dict)
+
+        self.assertEquals(updated_dict['dataset_date'],
+                          '06/15/16')
