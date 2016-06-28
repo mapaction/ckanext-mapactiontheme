@@ -96,3 +96,20 @@ class UpdateForSyndicationTest(unittest.TestCase):
 
         self.assertEquals(updated_dict['dataset_date'],
                           '06/15/16')
+
+    def test_dataset_source_is_datasource(self):
+
+        datasource = 'Situational data: N/ABoundaries: GADMSettlements: GeofabrikPhysical features: GeofabrikWaterways: Geofabrik<ITA>add data sources here (concise list)</ITA>'
+
+        dataset_dict = {
+            'extras': [{
+                'key': 'datasource',
+                'value': datasource},
+            ]
+        }
+
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict=dataset_dict)
+
+        self.assertEquals(updated_dict['dataset_source'],
+                          datasource)

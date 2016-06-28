@@ -188,12 +188,15 @@ def update_dataset_for_syndication(context, data_dict):
 
     created = get_pkg_dict_extra(dataset_dict, 'createdate')
 
-    created_date = datetime.strptime(created,
-                                     '%Y-%m-%d %H:%M:%S')
+    if created is not None:
+        created_date = datetime.strptime(created,
+                                         '%Y-%m-%d %H:%M:%S')
 
-    dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%y')
+        dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%y')
+
     dataset_dict['methodology'] = 'Census'
-    dataset_dict['dataset_source'] = 'MapAction'
+    dataset_dict['dataset_source'] = get_pkg_dict_extra(
+        dataset_dict, 'datasource')
     dataset_dict['groups'] = [{'id': 'afg'}]
     dataset_dict['data_update_frequency'] = '0'
 
