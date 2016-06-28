@@ -151,3 +151,20 @@ class UpdateForSyndicationTest(unittest.TestCase):
 
         self.assertEquals(updated_dict['methodology'],
                           'Other')
+
+    def test_method_other_set_to_methodology(self):
+        methodology = "The 'visited' coordinates come from the international Urban Search and Rescue (USAR) team reports as provided to the Virtual OSOCC and to the USAR coordination centre and are from GPS. The 'to visit' sites come from the government of Nepal as a list of names to which we have attempted to assign coordinates."
+
+        dataset_dict = {
+            'extras': [{
+                'key': 'methodology',
+                'value': methodology},
+            ]
+        }
+
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict=dataset_dict)
+
+        self.assertEquals(
+            updated_dict['method_other'],
+            methodology)
