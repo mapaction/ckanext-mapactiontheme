@@ -176,3 +176,11 @@ class UpdateForSyndicationTest(unittest.TestCase):
         self.assertEquals(
             updated_dict['method_other'],
             'Not specified')
+
+    def test_update_frequency_set_to_never(self):
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict={})
+
+        self.assertEquals(
+            updated_dict['data_update_frequency'],
+            '0')
