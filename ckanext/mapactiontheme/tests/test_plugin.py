@@ -144,3 +144,10 @@ class UpdateForSyndicationTest(unittest.TestCase):
                 {'id': 'eri'},
             ]
         )
+
+    def test_methodology_set_to_other(self):
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict={})
+
+        self.assertEquals(updated_dict['methodology'],
+                          'Other')

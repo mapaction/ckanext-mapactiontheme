@@ -196,7 +196,7 @@ def update_dataset_for_syndication(context, data_dict):
 
         dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%y')
 
-    dataset_dict['methodology'] = 'Census'
+    dataset_dict['methodology'] = 'Other'
     dataset_dict['dataset_source'] = get_pkg_dict_extra(
         dataset_dict, 'datasource')
 
