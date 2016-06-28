@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import pycountry
+
 import pylons.config as config
 
 from ckan.lib.helpers import get_pkg_dict_extra
@@ -197,7 +199,29 @@ def update_dataset_for_syndication(context, data_dict):
     dataset_dict['methodology'] = 'Census'
     dataset_dict['dataset_source'] = get_pkg_dict_extra(
         dataset_dict, 'datasource')
-    dataset_dict['groups'] = [{'id': 'afg'}]
+
+    countries = get_pkg_dict_extra(dataset_dict, 'countries')
+
+    dataset_dict['groups'] = []
+    if countries is not None:
+        for country_name in countries.split(','):
+            cleaned_name = country_name.strip().title()
+            country = None
+
+            try:
+                country = pycountry.countries.get(
+                    name=cleaned_name)
+            except KeyError:
+                try:
+                    country = pycountry.countries.get(
+                        common_name=cleaned_name)
+                except KeyError:
+                    pass
+
+            if country is not None:
+                dataset_dict['groups'].append(
+                    {'id': country.alpha3.lower()})
+
     dataset_dict['data_update_frequency'] = '0'
 
     return dataset_dict

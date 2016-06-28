@@ -98,7 +98,6 @@ class UpdateForSyndicationTest(unittest.TestCase):
                           '06/15/16')
 
     def test_dataset_source_is_datasource(self):
-
         datasource = 'Situational data: N/ABoundaries: GADMSettlements: GeofabrikPhysical features: GeofabrikWaterways: Geofabrik<ITA>add data sources here (concise list)</ITA>'
 
         dataset_dict = {
@@ -113,3 +112,35 @@ class UpdateForSyndicationTest(unittest.TestCase):
 
         self.assertEquals(updated_dict['dataset_source'],
                           datasource)
+
+    def test_groups_set_from_countries(self):
+        countries = 'ETHIOPIA, Uganda, Kenya, Tanzania, Malawi, Mozambique, Zambia, Zaire, Zimbabwe, Somalia, Sudan, Yemen, Djibouti, Eritrea, A made up country'
+
+        dataset_dict = {
+            'extras': [{
+                'key': 'countries',
+                'value': countries},
+            ]
+        }
+
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict=dataset_dict)
+
+        self.assertEquals(
+            updated_dict['groups'],
+            [
+                {'id': 'eth'},
+                {'id': 'uga'},
+                {'id': 'ken'},
+                {'id': 'tza'},
+                {'id': 'mwi'},
+                {'id': 'moz'},
+                {'id': 'zmb'},
+                {'id': 'zwe'},
+                {'id': 'som'},
+                {'id': 'sdn'},
+                {'id': 'yem'},
+                {'id': 'dji'},
+                {'id': 'eri'},
+            ]
+        )
