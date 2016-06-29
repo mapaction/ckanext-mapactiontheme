@@ -230,6 +230,8 @@ def update_dataset_for_syndication(context, data_dict):
 
     dataset_dict['data_update_frequency'] = '0'
 
+    dataset_dict.pop('tags', None)
+
     return dataset_dict
 
 

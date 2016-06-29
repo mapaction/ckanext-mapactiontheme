@@ -184,3 +184,9 @@ class UpdateForSyndicationTest(unittest.TestCase):
         self.assertEquals(
             updated_dict['data_update_frequency'],
             '0')
+
+    def test_tags_removed(self):
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict={'tags': []})
+
+        self.assertTrue('tags' not in updated_dict)
