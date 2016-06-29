@@ -194,7 +194,7 @@ def update_dataset_for_hdx_syndication(context, data_dict):
         created_date = datetime.strptime(created,
                                          '%Y-%m-%d %H:%M:%S')
 
-        dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%y')
+        dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%Y')
 
     dataset_dict['methodology'] = 'Other'
     methodology = get_pkg_dict_extra(dataset_dict, 'methodology')
@@ -208,7 +208,7 @@ def update_dataset_for_hdx_syndication(context, data_dict):
 
     dataset_dict['groups'] = _get_group_ids(dataset_dict)
 
-    dataset_dict['data_update_frequency'] = '0'
+    dataset_dict['data_update_frequency'] = '0'  # Never
 
     dataset_dict.pop('tags', None)
     dataset_dict.pop('extras', None)

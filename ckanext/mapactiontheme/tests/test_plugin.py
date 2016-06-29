@@ -95,7 +95,7 @@ class UpdateForSyndicationTest(unittest.TestCase):
                                            dataset_dict=dataset_dict)
 
         self.assertEquals(updated_dict['dataset_date'],
-                          '06/15/16')
+                          '06/15/2016')
 
     def test_dataset_source_is_datasource(self):
         datasource = 'Situational data: N/ABoundaries: GADMSettlements: GeofabrikPhysical features: GeofabrikWaterways: Geofabrik<ITA>add data sources here (concise list)</ITA>'
