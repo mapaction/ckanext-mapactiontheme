@@ -166,7 +166,7 @@ class UpdateForSyndicationTest(unittest.TestCase):
                                            dataset_dict=dataset_dict)
 
         self.assertEquals(
-            updated_dict['method_other'],
+            updated_dict['methodology_other'],
             methodology)
 
     def test_method_other_set_to_placeholder_if_no_extras(self):
@@ -174,7 +174,7 @@ class UpdateForSyndicationTest(unittest.TestCase):
                                            dataset_dict={})
 
         self.assertEquals(
-            updated_dict['method_other'],
+            updated_dict['methodology_other'],
             'Not specified')
 
     def test_update_frequency_set_to_never(self):
