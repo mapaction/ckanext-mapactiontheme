@@ -210,3 +210,9 @@ class UpdateForSyndicationTest(unittest.TestCase):
                                            dataset_dict={'tags': []})
 
         self.assertTrue('tags' not in updated_dict)
+
+    def test_extras_removed(self):
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict={'extras': []})
+
+        self.assertTrue('extras' not in updated_dict)
