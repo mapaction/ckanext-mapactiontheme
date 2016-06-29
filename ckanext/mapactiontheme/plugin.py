@@ -185,7 +185,7 @@ def authorized(context, data_dict=None):
     return {'success': True}
 
 
-def update_dataset_for_syndication(context, data_dict):
+def update_dataset_for_hdx_syndication(context, data_dict):
     dataset_dict = data_dict['dataset_dict']
 
     created = get_pkg_dict_extra(dataset_dict, 'createdate')
@@ -206,9 +206,20 @@ def update_dataset_for_syndication(context, data_dict):
     dataset_dict['dataset_source'] = get_pkg_dict_extra(
         dataset_dict, 'datasource')
 
+    dataset_dict['groups'] = _get_group_ids(dataset_dict)
+
+    dataset_dict['data_update_frequency'] = '0'
+
+    dataset_dict.pop('tags', None)
+
+    return dataset_dict
+
+
+def _get_group_ids(dataset_dict):
+    group_ids = []
+
     countries = get_pkg_dict_extra(dataset_dict, 'countries')
 
-    dataset_dict['groups'] = []
     if countries is not None:
         for country_name in countries.split(','):
             cleaned_name = country_name.strip().title()
@@ -225,14 +236,13 @@ def update_dataset_for_syndication(context, data_dict):
                     pass
 
             if country is not None:
-                dataset_dict['groups'].append(
+                group_ids.append(
                     {'id': country.alpha3.lower()})
 
-    dataset_dict['data_update_frequency'] = '0'
+    if group_ids == []:
+        group_ids.append({'id': 'world'})
 
-    dataset_dict.pop('tags', None)
-
-    return dataset_dict
+    return group_ids
 
 
 class MapactionthemePlugin(plugins.SingletonPlugin):
@@ -247,7 +257,7 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
     def get_actions(self):
         return {
             'update_dataset_for_syndication':
-            update_dataset_for_syndication,
+            update_dataset_for_hdx_syndication,
         }
 
     # IFacets

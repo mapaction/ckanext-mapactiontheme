@@ -145,6 +145,26 @@ class UpdateForSyndicationTest(unittest.TestCase):
             ]
         )
 
+    def test_groups_default_to_world_for_no_valid_countries(self):
+        countries = 'Zaire, A made up country'
+
+        dataset_dict = {
+            'extras': [{
+                'key': 'countries',
+                'value': countries},
+            ]
+        }
+
+        updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                           dataset_dict=dataset_dict)
+
+        self.assertEquals(
+            updated_dict['groups'],
+            [
+                {'id': 'world'},
+            ]
+        )
+
     def test_methodology_set_to_other(self):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={})
