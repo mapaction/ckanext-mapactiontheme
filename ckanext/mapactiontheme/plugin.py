@@ -188,13 +188,7 @@ def authorized(context, data_dict=None):
 def update_dataset_for_hdx_syndication(context, data_dict):
     dataset_dict = data_dict['dataset_dict']
 
-    created = get_pkg_dict_extra(dataset_dict, 'createdate')
-
-    if created is not None:
-        created_date = datetime.strptime(created,
-                                         '%Y-%m-%d %H:%M:%S')
-
-        dataset_dict['dataset_date'] = created_date.strftime('%m/%d/%Y')
+    dataset_dict['dataset_date'] = _get_dataset_date(dataset_dict)
 
     dataset_dict['methodology'] = 'Other'
     methodology = get_pkg_dict_extra(dataset_dict, 'methodology')
@@ -214,6 +208,26 @@ def update_dataset_for_hdx_syndication(context, data_dict):
     dataset_dict.pop('extras', None)
 
     return dataset_dict
+
+
+def _get_dataset_date(dataset_dict):
+    created = get_pkg_dict_extra(dataset_dict, 'createdate')
+
+    created_date = datetime(2003, 1, 1)
+
+    if created is not None:
+        try:
+            created_date = datetime.strptime(created,
+                                             '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            try:
+                created_date = datetime.strptime(created,
+                                                 '%d/%m/%Y %H:%M')
+            except ValueError:
+                pass
+
+    return created_date.strftime('%m/%d/%Y')
+
 
 
 def _get_group_ids(dataset_dict):

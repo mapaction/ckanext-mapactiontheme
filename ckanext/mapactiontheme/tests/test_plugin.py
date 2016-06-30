@@ -84,18 +84,23 @@ class UpdateForSyndicationTest(unittest.TestCase):
         super(UpdateForSyndicationTest, self).tearDown()
 
     def test_dataset_date_is_created_date(self):
-        dataset_dict = {
-            'extras': [{
-                'key': 'createdate',
-                'value': '2016-06-15 03:49:19'},
-            ]
-        }
+        dates = (('0000-00-00 00:00:00', '01/01/2003'),
+                 ('15/06/2009 00:00', '06/15/2009'),
+                 ('2016-06-15 03:49:19', '06/15/2016'))
 
-        updated_dict = helpers.call_action('update_dataset_for_syndication',
-                                           dataset_dict=dataset_dict)
+        for (createdate, dataset_date) in dates:
+            dataset_dict = {
+                'extras': [{
+                    'key': 'createdate',
+                    'value': createdate},
+                ]
+            }
 
-        self.assertEquals(updated_dict['dataset_date'],
-                          '06/15/2016')
+            updated_dict = helpers.call_action('update_dataset_for_syndication',
+                                               dataset_dict=dataset_dict)
+
+            self.assertEquals(updated_dict['dataset_date'],
+                              dataset_date)
 
     def test_dataset_source_is_datasource(self):
         datasource = 'Situational data: N/ABoundaries: GADMSettlements: GeofabrikPhysical features: GeofabrikWaterways: Geofabrik<ITA>add data sources here (concise list)</ITA>'
