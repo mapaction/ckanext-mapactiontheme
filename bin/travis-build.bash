@@ -14,6 +14,9 @@ export ckan_branch=mapaction-dev
 echo "CKAN branch: $ckan_branch"
 git checkout $ckan_branch
 python setup.py develop
+pip install --upgrade pip
+pip install setuptools==18.5
+
 pip install -r requirements.txt --allow-all-external
 pip install -r dev-requirements.txt --allow-all-external
 cd -
