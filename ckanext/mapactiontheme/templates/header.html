@@ -49,7 +49,7 @@
     <div class="field">
       <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
       <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('search all maps and data') }}" />
-      <input type='hidden' name='sort' value='metadata_modified desc' />
+      <input type='hidden' name='sort' value='score desc, metadata_modified desc' />
       <button class="btn-search" type="submit"><i class="icon-search"></i></button>
     </div>
   </form>
