@@ -335,6 +335,31 @@ a:hover {
   }
 }
 
+@media (max-width: 768px) {
+  .page-header .nav-tabs {
+    margin: 0 0 -1px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .page-header .nav-tabs > li {
+    float: left;
+  }
+
+  .page-header .nav-tabs > .active > a,
+  .page-header .nav-tabs > .active > a:hover,
+  .page-header .nav-tabs > .active > a:focus {
+    border-bottom-color: transparent;
+  }
+
+  .page-header .nav-tabs > li a {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+  }
+
+
+}
+
 @media (max-width: 979px) {
     .masthead .nav-collapse {
         padding-top: 0px;
