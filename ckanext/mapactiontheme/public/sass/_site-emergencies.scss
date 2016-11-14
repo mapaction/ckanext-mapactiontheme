@@ -1,0 +1,150 @@
+/* Create the color bars that spread outside the page width
+   for the emergencies banne r*/
+.site-emergencies-layout {
+	position: relative;
+	&::before {
+		position: absolute;
+		right: 100%;
+	}
+	&::after {
+		position: absolute;
+		left: 100%;
+	}
+}
+
+/* Create the arrow in the emergencies banner */
+.site-emergencies-layout > h1 {
+	position: relative;
+	&::after {
+		position: absolute;
+		left: 100%;
+		top: 0;
+	}
+}
+
+.site-emergencies-layout {
+	> h1 {
+		display: inline-block;
+		margin: 0;
+		/* Center the text in the emergencie block */
+		span {
+			margin-top: #{ ($emergencies-height - $base-font-size * $base-line-height) / 2 };
+			display: inline-block;
+			margin-right: 0.5 * $gutter-size;
+			@media screen and (max-width: $two_column_min_width) {
+				margin-top: #{ ($emergencies-height-small - $base-font-size-small * $base-line-height) / 2 };
+			}
+		}
+		.current-emergency-icon {
+			display: none;
+		}
+		@media screen and (max-width: $three_column_min_width) {
+			.current-emergency-icon {
+				display: inline-block;
+			}
+			.current-emergency-text {
+				display: none;
+			}
+		}
+	}
+	> ul {
+		display: inline-block;
+		padding: 0;
+		margin: 0 0 0 $gutter-size*1.5;
+		@media screen and (max-width: $two_column_min_width) {
+			margin: 0 0 0 $gutter-size;
+		}
+	}
+	> ul > li {
+		display: inline-block;
+		margin: 0 $gutter-size 0 0;
+		@media screen and (max-width: $three_column_min_width) {
+			.emergency-type {
+				display: none;
+			}
+		}
+		@media screen and (max-width: $two_column_min_width) {
+			margin: 0 $gutter-size/2 0 0;
+		}
+	}
+}
+
+/* Create the color bars that spread outside the page width
+   for the emergencies banne r*/
+.site-emergencies {
+	&::before {
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+		}
+		width: 1000px;
+		background-color: $primary-blue;
+		content: "";
+	}
+	&::after {
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+		}
+		width: 1000px;
+		background-color: $primary-red;
+		content: "";
+	}
+}
+
+/* Create the arrow in the emergencies banner */
+.site-emergencies-layout > h1 {
+    &::after {
+    	content: "";
+    	width: 0;
+    	height: 0;
+		border-width: $emergencies-height/2 0 $emergencies-height/2 $emergencies-height/2;
+		border-color: transparent transparent transparent $primary-blue;
+		border-style: solid;
+		@media screen and (max-width: $two_column_min_width) {
+			border-width: $emergencies-height-small/2 0 $emergencies-height-small/2 $emergencies-height-small/2;
+		}
+    }
+}
+
+.site-emergencies {
+	height: $emergencies-height;
+	background-color: $primary-red;
+	@media screen and (max-width: $two_column_min_width) {
+		height: $emergencies-height-small;
+	}
+	
+	> h1 {
+		background-color: $primary-blue;
+		color: white;
+		text-transform: uppercase;
+		font-size: 1rem;
+		font-weight: bold;
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+			font-size: $base-font-size-small;
+		}
+	}
+	> ul {
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+		}
+	}
+	> ul > li > a,
+	> ul > li > a:visited {
+		font-size: 1rem;
+		font-weight: bold;
+		color: white;
+		text-transform: uppercase;
+		text-decoration: none;
+		@media screen and (max-width: $two_column_min_width) {
+			font-size: $base-font-size-small;
+		}
+	}
+	> ul > li > a:hover {
+		text-decoration: underline;
+	}
+}
+

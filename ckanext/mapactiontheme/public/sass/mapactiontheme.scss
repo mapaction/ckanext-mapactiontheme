@@ -1,0 +1,383 @@
+/* CSS for the whole site */
+
+$gutter-size: 30px;
+$primary-blue: #19458d;
+$primary-red: #e53d2f;
+$secondary-blue: #92b4ec;
+$emergencies-height: 60px;
+$emergencies-height-small: $emergencies-height*0.8;
+$base-font-size: 14pt;
+$base-font-size-medium: 12pt;
+$base-font-size-small: 11pt;
+$base-line-height: 1.5;
+$base-font-family: "Arial", "sans-serif";
+
+$logo-height: 75px;
+$logo-height-small: $logo-height * 0.8;
+
+$two_column_min_width: 750px;
+$three_column_min_width: 800px;
+$full_menu_min_width: 950px;
+
+@import "_site-emergencies";
+
+body {
+    background-color: white;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.masthead {
+    background: white;
+}
+
+.masthead .nav-collapse {
+    padding-top: 32px;
+}
+
+.masthead .site-search input {
+    width: 260px;
+}
+
+.toolbar {
+    padding: 0px;
+    margin-bottom: 4px;
+}
+
+.toolbar .breadcrumb {
+    font-family: arial,verdana,helvetica,sans-serif;
+    color: #333;
+    margin-left: 20px;
+    line-height: 30px;
+    font-size: 12.5px;
+    background: #ffffff;
+}
+
+.toolbar .home a:hover {
+    text-decoration: underline;
+}
+
+/* Turn off the hamburger that appears on small screens*/
+.navbar .btn-navbar {
+    display: none;
+}
+
+.span6 {
+    padding-left: 20px;
+}
+
+[role="main"] {
+    background: #ffffff;
+    padding-top: 0px;
+}
+
+.wrapper {
+    border: 0;
+    box-shadow: none;
+}
+
+.site-footer {
+    background-color: #e3e4ec;
+    color: #000000;
+    min-height: 0px;
+    padding: 0px;
+    font-size: 10px;
+    line-height: 10px;
+    padding-top: 5px;
+}
+
+.site-footer .span4 {
+    float: right;
+}
+
+.site-footer a {
+    color: #000000;
+}
+
+.attribution {
+    text-align: right;
+}
+
+
+.dataset-list-thumbnail {
+    clear: left;
+    float: left;
+    padding-right: 20px;
+}
+
+IMG.dataset-thumbnail {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dataset-item {
+    clear: left;
+    overflow: auto;
+}
+
+.dataset-content-inner {
+    overflow: hidden;
+}
+
+/* Home page */
+
+.catalog-title {
+    margin-left: 0px;
+    clear: both;
+    background: #ffffff;
+    padding: 10px 20px 20px 20px;
+}
+
+.catalog-title h1 {
+    float: left;
+}
+
+.featured-actions {
+    float: right;
+    margin-right: 20px;
+}
+
+.simple-event-list {
+    margin-top: 30px;
+}
+
+ul.simple-event-list {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.simple-event-list li {
+    max-width: 700px;
+    clear: left;
+}
+
+.simple-event-list li a {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2em;
+}
+
+.simple-event-list p {
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.simple-event-list .image{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+
+.mapaction-feed span {
+    position: relative;
+    top: 4px;
+    left: 0.3em;
+}
+
+
+/* Package and Group read pages */
+
+.group-read .span9 {
+    float: none;
+    margin-left: 10px;
+}
+
+.package-read .page-header, .group-read .page-header {
+    background: none;
+    border-bottom: none;
+}
+
+.group-read .nav-tabs {
+    display: none;
+}
+
+
+
+#home_dataset_list {
+    margin-top: 30px;
+}
+
+.dataset-heading a, .resource-item .heading {
+    color: #3c60ad;
+}
+
+
+.resource-item .heading:hover {
+    color: #263e76;
+}
+
+
+.btn{
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+    background-color: #3c60ad;
+    Background-image: none;
+    Border: none;
+}
+
+.btn-primary {
+    color: #100b00;
+    background-color: #fcb127;
+    text-shadow: 0 1px 1px #fdd488;
+    Background-image: none;
+    Border: none;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #263e76;
+    text-shadow: 0 1px 1px #333;
+    Background-image: none;
+    Border: none;
+}
+
+.btn a:hover {
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    color: #100b00;
+    background-color: #ed9b03;
+    text-shadow: 0 1px 1px #fcb127;
+    Background-image: none;
+    Border: none;
+}
+
+.btn-primary:hover a {
+    background-color: #ed9b03;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+    background-color: #ed9b03;
+    color: #333;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: #263e76;
+    background-image: None;
+}
+
+.btn-primary .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+
+.list-item-btn {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    width: 6.5em;
+    text-align: left;
+}
+
+a {
+    color: #3c60ad;
+}
+
+a:hover {
+    color: #263e76;
+}
+
+.module-narrow .nav-item>a:hover {
+    color: #333;
+}
+
+.nav-item.active>a {
+    background-color: #3c60ad;
+}
+
+.nav-item.active>a:hover {
+    background-color: #263e76;
+    color: #fff;
+}
+
+.nav-item.active>a:before {
+    background-image: url("nav-active-2.png");
+}
+
+.nav-item.active>a:hover:before {
+    background-image: url("nav-active-roll-2.png");
+}
+
+.mapaction-feed {
+    float:left;
+    clear:both;
+}
+
+.login-container {
+    margin-top:2em;
+}
+
+#g-signin-button {
+    width:auto;
+}
+
+.pagination {
+    clear:both;
+}
+
+.old-version {
+    font-size:150%;
+}
+
+@media (max-width: 480px) {
+    .simple-event-list .image{
+        display: none;
+    }
+}
+
+
+@media (max-width: 767px) {
+    body {
+        padding-left:0;
+        padding-right:0;
+    }
+    [role="main"],
+    .site-footer {
+        padding-left:20px;
+        padding-right:20px;
+    }
+    .toolbar .breadcrumb {
+        margin-left:0;
+    }
+    .toolbar .breadcrumb, .toolbar .breadcrumb a {
+        color: #505050 !important;
+    }
+    .toolbar .breadcrumb .home {
+        display: initial;
+    }
+    .list-item-btn {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header .nav-tabs {
+        margin: 0 0 -1px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .page-header .nav-tabs > li {
+        float: left;
+    }
+
+    .page-header .nav-tabs > .active > a,
+    .page-header .nav-tabs > .active > a:hover,
+    .page-header .nav-tabs > .active > a:focus {
+        border-bottom-color: transparent;
+    }
+
+    .page-header .nav-tabs > li a {
+        -webkit-border-radius: 4px 4px 0 0;
+        -moz-border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 0;
+    }
+}
+
+@media (max-width: 979px) {
+    .masthead .nav-collapse {
+        padding-top: 0px;
+    }
+}
