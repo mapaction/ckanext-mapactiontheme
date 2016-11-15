@@ -125,6 +125,14 @@ body {
   max-width: 950px;
   margin: 0 auto; }
 
+.account-masthead {
+  background: white;
+  min-height: 0; }
+  .account-masthead .account ul li a {
+    color: #19458d; }
+  .account-masthead .not-authed {
+    display: none; }
+
 .masthead {
   background: white; }
 
