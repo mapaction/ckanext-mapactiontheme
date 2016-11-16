@@ -122,6 +122,7 @@
 
 body {
   background-color: white;
+  background-image: none;
   max-width: 950px;
   margin: 0 auto; }
 
@@ -156,6 +157,9 @@ body {
 
 .toolbar .home a:hover {
   text-decoration: underline; }
+
+.navbar-static-top {
+  margin-top: 30px; }
 
 /* Turn off the hamburger that appears on small screens*/
 .navbar .btn-navbar {

@@ -58,23 +58,27 @@
   </header>
 {% endblock %}
 
+
+{% resource 'mapactiontheme/current-emergencies.js' %}
+
 <header>
     <!-- emergency-location bar -->
+	{% set emergencies = h.current_emergencies() %} 
 	<div class="site-emergencies site-emergencies-layout">
+		{% if emergencies == None %}
+		<span>Error loading emergencies menu</span>
+		{% else %}
 		<h1>
 			<span class="current-emergency-icon">(!)</span>
-			<span class="current-emergency-text">Current Emergencies</span>
+			<span class="current-emergency-text">{{ emergencies.name|safe }}</span>
 		</h1>
 		<ul id="menu-current-emergencies" class="menu">
-			<li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6">
-			<a href="http://maps.mapaction.org/event/haiti-2016">
-				<span class="emergency-type">Hurricane Matthew,</span> <span class="emergency-location">Haiti</span>
-			</a></li>
-		<li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7">
-				<a href="http://maps.mapaction.org/event/tanzania-eq-2016">
-					<span class="emergency-type">Earthquake,</span> <span class="emergency-location">Tanzania</span>
-			</a></li>
+            {% for emergency in emergencies.get('items') %}
+            <li id="menu-item-{{ emergency.id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ emergency.id}}">
+                <a href="{{ emergency.url }}">{{ emergency.title|safe }}</a></li>
+            {% endfor %}
 		</ul>
+		{% endif %}
 	</div>
     <!-- /emergency-location bar -->
 </header>

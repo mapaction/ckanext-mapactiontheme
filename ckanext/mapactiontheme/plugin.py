@@ -176,6 +176,26 @@ def home_page_link():
     value = config.get('ckan.mapactiontheme.home_page_link')
     return value
 
+def current_emergencies():
+    import requests
+    menu = None
+
+    current_emergencies_api = config.get('ckan.mapactiontheme.current_emergencies_api')
+
+    if current_emergencies_api is None:
+        raise Exception("Missing setting: ckan.mapactiontheme.current_emergencies_api")
+
+    try:
+        resp = requests.get(current_emergencies_api, timeout=1.0)
+    except Exception:
+        return None
+
+    try:
+        menu = resp.json()
+    except Exception:
+        pass
+
+    return menu
 
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
@@ -334,5 +354,6 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
             'show_groups_tab': show_groups_tab,
             'show_activity_tab': show_activity_tab,
             'ckan_home_page_name': ckan_home_page_name,
-            'home_page_link': home_page_link
+            'home_page_link': home_page_link,
+            'current_emergencies': current_emergencies
         }

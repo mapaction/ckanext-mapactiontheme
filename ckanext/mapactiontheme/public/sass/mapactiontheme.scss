@@ -23,13 +23,28 @@ $full_menu_min_width: 950px;
 
 body {
     background-color: white;
+    background-image: none;
     max-width: 950px;
     margin: 0 auto;
+}
+
+
+.account-masthead {
+    background: white;
+    min-height: 0;
+    .account ul li a {
+        color: $primary-blue;
+    }
+
+    .not-authed {
+        display: none;
+    }
 }
 
 .masthead {
     background: white;
 }
+
 
 .masthead .nav-collapse {
     padding-top: 32px;
@@ -55,6 +70,10 @@ body {
 
 .toolbar .home a:hover {
     text-decoration: underline;
+}
+
+.navbar-static-top {
+    margin-top: $gutter-size;
 }
 
 /* Turn off the hamburger that appears on small screens*/
