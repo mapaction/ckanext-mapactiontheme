@@ -120,6 +120,138 @@
   .site-emergencies > ul > li > a:hover {
     text-decoration: underline; }
 
+/*
+ * Navigation main styling
+ */
+.main-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+.main-navigation li > a {
+  color: #19458d;
+  text-decoration: none; }
+.main-navigation > ul > li {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center; }
+  .main-navigation > ul > li > a {
+    font-size: 14pt; }
+.main-navigation ul.sub-menu {
+  padding: 15px 0 0 0;
+  background-color: white;
+  border-bottom: 3px solid #92b4ec;
+  border-radius: 2px;
+  text-align: left; }
+  .main-navigation ul.sub-menu li {
+    font-weight: normal;
+    text-transform: none;
+    padding: 0 15px; }
+
+/*
+ * Layout of inner component
+ * Note that default rules are for full width - overrides follow
+ */
+/* General layout */
+.main-navigation > ul > li {
+  margin-right: 30px; }
+  @media screen and (max-width: 800px) {
+    .main-navigation > ul > li {
+      margin-right: 15px; } }
+
+/* Create the hover underline effect */
+.main-navigation > ul > li > a {
+  position: relative; }
+.main-navigation > ul > li:hover > a::after,
+.main-navigation > ul > li.current_page_item > a::after {
+  position: absolute;
+  left: 0;
+  bottom: -0.5em;
+  content: "";
+  height: 0.3em;
+  width: 100%;
+  background-color: #92b4ec;
+  border-radius: 4px;
+  z-index: 1; }
+
+/* Create the drop down menu magic */
+.main-navigation ul.sub-menu {
+  display: none;
+  margin: 0;
+  width: 100%; }
+  .main-navigation ul.sub-menu li {
+    width: 100%; }
+.main-navigation li:hover {
+  position: relative; }
+  .main-navigation li:hover ul.sub-menu {
+    position: absolute;
+    left: 0;
+    display: block; }
+
+/* Navigation for intermediate width layout */
+@media screen and (max-width: 950px) {
+  .main-navigation > ul > li a {
+    font-size: 12pt; } }
+/* Mobile navigation */
+@media screen and (max-width: 750px) {
+  .site-navigation-toggle-label {
+    font-size: 11pt;
+    text-transform: uppercase;
+    border: 1px solid #92b4ec;
+    border-radius: 4px;
+    padding: 5px;
+    color: #19458d; }
+
+  .main-navigation > ul > li {
+    text-align: left; }
+  .main-navigation li:hover ul.sub-menu {
+    padding-top: 0; } }
+/* 
+
+Layout
+
+ */
+/* Full width navigation */
+.site-navigation-toggle-label-layout {
+  display: none;
+  margin-top: 53.5px; }
+  @media screen and (max-width: 800px) {
+    .site-navigation-toggle-label-layout {
+      margin-top: 46px; } }
+
+.main-navigation-layout {
+  float: right;
+  margin-top: 53.5px; }
+  @media screen and (max-width: 800px) {
+    .main-navigation-layout {
+      margin-top: 46px; } }
+  .main-navigation-layout ul, .main-navigation-layout li {
+    display: inline-block; }
+  .main-navigation-layout input {
+    display: none; }
+
+/* Intermediate navigation */
+@media screen and (max-width: 950px) {
+  .main-navigation-layout {
+    float: none;
+    clear: both; } }
+/* Mobile navigation */
+@media screen and (max-width: 750px) {
+  .site-navigation-toggle-label-layout {
+    display: block;
+    float: right; }
+
+  .main-navigation-layout {
+    float: none;
+    clear: both; }
+    .main-navigation-layout input[type="checkbox"]:not(:checked) + ul li {
+      display: none; }
+    .main-navigation-layout > ul > li {
+      display: block;
+      text-align: left;
+      margin-top: 15px; }
+    .main-navigation-layout ul li:hover ul.sub-menu {
+      left: 100%;
+      top: 0; } }
 body {
   background-color: white;
   background-image: none;

@@ -1,0 +1,180 @@
+/*
+ * Navigation main styling
+ */
+.main-navigation {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li > a {
+		color: $primary-blue;
+		text-decoration: none;
+	}
+	> ul > li {
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+		> a {
+			font-size: $base-font-size;
+		}
+	}
+	ul.sub-menu {
+		padding: $gutter-size/2 0 0 0;
+		background-color: white;
+		border-bottom: 3px solid $secondary-blue;
+		border-radius: 2px;
+		text-align: left;
+		li {
+			font-weight: normal;
+			text-transform: none;
+			padding: 0 $gutter-size/2;
+		}
+	}
+}
+
+/*
+ * Layout of inner component
+ * Note that default rules are for full width - overrides follow
+ */
+
+/* General layout */
+.main-navigation {
+	> ul > li {
+		margin-right: $gutter-size;
+		@media screen and (max-width: $three_column_min_width) {
+			margin-right: $gutter-size/2;
+		}
+	}
+}
+
+/* Create the hover underline effect */
+.main-navigation {
+	> ul > li > a {
+		position: relative;
+	}
+	> ul > li:hover > a::after,
+	> ul > li.current_page_item > a::after {
+		position: absolute;
+		left: 0;
+		bottom: -0.5em;
+		content: "";
+		height: 0.3em;
+		width: 100%;
+		background-color: $secondary-blue;
+		border-radius: 4px;
+		z-index: 1;
+	}
+}
+
+/* Create the drop down menu magic */
+.main-navigation {
+	ul.sub-menu {
+		display: none;
+		margin: 0;
+		width: 100%;
+		li {
+			width: 100%;
+		}
+	}
+	li:hover {
+		position: relative;
+		ul.sub-menu {
+			position: absolute;
+			left: 0;
+			display: block;
+		}
+	}
+}
+
+/* Navigation for intermediate width layout */
+@media screen and (max-width: $full_menu_min_width) {
+	.main-navigation > ul > li  a {
+		font-size: $base-font-size-medium;
+	}
+}
+
+/* Mobile navigation */
+@media screen and (max-width: $two_column_min_width) {
+	.site-navigation-toggle-label {
+		font-size: $base-font-size-small;
+		text-transform: uppercase;
+		border: 1px solid $secondary-blue;
+		border-radius: 4px;
+		padding: 5px;
+		color: $primary-blue;
+	}
+
+	.main-navigation {
+		> ul > li {
+			text-align: left;
+		}
+		li:hover ul.sub-menu {
+			padding-top: 0;
+		}
+	}
+}
+
+/* 
+
+Layout
+
+ */
+
+/* Full width navigation */
+.site-navigation-toggle-label-layout {
+	display: none;
+	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
+	@media screen and (max-width: $three_column_min_width) {
+		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
+	}
+}
+.main-navigation-layout {
+	float: right;
+	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
+	@media screen and (max-width: $three_column_min_width) {
+		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
+	}
+
+	ul, li {
+		display: inline-block;
+	}
+	input {
+		display: none;
+	}
+}
+
+/* Intermediate navigation */
+@media screen and (max-width: $full_menu_min_width) {
+	.main-navigation-layout {
+		float: none;
+		clear: both;
+	}
+}
+
+/* Mobile navigation */
+@media screen and (max-width: $two_column_min_width) {
+	.site-navigation-toggle-label-layout {
+		display: block;
+		float: right;
+	}
+
+	.main-navigation-layout {
+		float: none;
+		clear: both;
+		input[type="checkbox"]:not(:checked) + ul li {
+			display: none;
+		}
+		> ul > li {
+			display: block;
+			text-align: left;
+			margin-top: $gutter-size/2;
+		}
+
+		ul li:hover ul.sub-menu {
+			left: 100%;
+			top: 0;
+		}
+	}
+}
+
