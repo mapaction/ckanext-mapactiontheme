@@ -9,6 +9,8 @@ from ckan.lib.helpers import get_pkg_dict_extra
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+from functools import partial
+
 
 def group_name():
     '''Allows renaming of "Group"
@@ -176,17 +178,17 @@ def home_page_link():
     value = config.get('ckan.mapactiontheme.home_page_link')
     return value
 
-def current_emergencies():
+def wp_json_api(endpoint_setting):
     import requests
     menu = None
 
-    current_emergencies_api = config.get('ckan.mapactiontheme.current_emergencies_api')
+    endpoint_url = config.get(endpoint_setting)
 
-    if current_emergencies_api is None:
-        raise Exception("Missing setting: ckan.mapactiontheme.current_emergencies_api")
+    if endpoint_url is None:
+        raise Exception("Missing setting: %s" % endpoint_setting)
 
     try:
-        resp = requests.get(current_emergencies_api, timeout=1.0)
+        resp = requests.get(endpoint_url, timeout=1.0)
     except Exception:
         return None
 
@@ -355,5 +357,12 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
             'show_activity_tab': show_activity_tab,
             'ckan_home_page_name': ckan_home_page_name,
             'home_page_link': home_page_link,
-            'current_emergencies': current_emergencies
+            'current_emergencies': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.current_emergencies_api'
+            ),
+            'nav_menu': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.nav_menu_api'
+            ),
         }
