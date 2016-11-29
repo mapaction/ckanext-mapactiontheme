@@ -57,6 +57,10 @@ body {
 	position: relative;
 }
 
+label.site-navigation-toggle-label:after {
+    content: none;
+}
+
 
 .account-masthead {
     background: white;

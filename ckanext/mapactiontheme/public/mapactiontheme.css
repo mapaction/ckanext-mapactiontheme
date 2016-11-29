@@ -357,6 +357,9 @@ body {
   overflow-x: hidden;
   position: relative; }
 
+label.site-navigation-toggle-label:after {
+  content: none; }
+
 .account-masthead {
   background: white;
   min-height: 0; }
