@@ -13,9 +13,9 @@ $secondary-grey-light: #eaeaea;
 $emergencies-height: 60px;
 $emergencies-height-small: $emergencies-height*0.8;
 
-$base-font-size: 14pt;
-$base-font-size-medium: 12pt;
-$base-font-size-small: 11pt;
+$base-font-size: 19px;
+$base-font-size-medium: 17px;
+$base-font-size-small: 16px;
 $base-line-height: 1.5;
 $base-font-family: "Arial", "sans-serif";
 
@@ -47,8 +47,8 @@ html {
     box-sizing: border-box;
     width: 100%;
     overflow-x: hidden;
-    font-size: 19px;
-    line-height: 1.5;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
     font-family: "Arial", "sans-serif";
 }
 
@@ -59,6 +59,9 @@ body {
 	width: 100%;
 	overflow-x: hidden;
 	position: relative;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-family: "Arial", "sans-serif";
 }
 
 p {
