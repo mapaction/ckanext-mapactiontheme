@@ -103,6 +103,14 @@ body {
     }
 }
 
+.navbar-fixed-top,
+.navbar-fixed-bottom,
+.navbar-static-top {
+    /* override negative margin (CKAN css) */
+    margin-left: 0;
+    margin-right: 0;
+}
+
 /* Turn off the hamburger that appears on small screens*/
 .navbar .btn-navbar {
     display: none;

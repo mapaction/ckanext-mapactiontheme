@@ -247,7 +247,6 @@
   .main-navigation li:hover ul.sub-menu {
     position: relative;
     z-index: 0; } }
-/* Navigation Layout */
 /* Full width navigation */
 .site-navigation-toggle-label-layout {
   display: none;
@@ -286,10 +285,7 @@
     .main-navigation-layout > ul > li {
       display: block;
       text-align: left;
-      margin-top: 15px; }
-    .main-navigation-layout ul li:hover ul.sub-menu {
-      left: 100%;
-      top: 0; } }
+      margin-top: 15px; } }
 /* Footer layout */
 .site-footer-layout {
   min-height: 280px;
@@ -391,6 +387,13 @@ body {
 
 .navbar-static-top .container {
   width: auto; }
+
+.navbar-fixed-top,
+.navbar-fixed-bottom,
+.navbar-static-top {
+  /* override negative margin (CKAN css) */
+  margin-left: 0;
+  margin-right: 0; }
 
 /* Turn off the hamburger that appears on small screens*/
 .navbar .btn-navbar {
