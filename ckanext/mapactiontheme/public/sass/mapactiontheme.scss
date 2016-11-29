@@ -2,7 +2,6 @@
 
 $gutter-size: 30px;
 $margin-spread: 1000px;
-$site-max-width: 1200px;
 
 $primary-blue: #19458d;
 $primary-red: #e53d2f;
@@ -20,16 +19,19 @@ $base-font-family: "Arial", "sans-serif";
 $logo-height: 75px;
 $logo-height-small: $logo-height * 0.8;
 
+$site-max-width: 1200px;
 $two_column_min_width: 750px;
-$three_column_min_width: 800px;
-$full_menu_min_width: 950px;
+$three_column_min_width: 1140px;
+$full_menu_min_width: 1023px;
 
 $footer-min-height: 280px;
 
 @import "_site_layout";
 @import "_site-emergencies_layout";
 @import "_site-emergencies";
+@import "_site-branding_layout";
 @import "_navigation";
+@import "_navigation_layout";
 @import "_footer_layout";
 @import "_footer";
 
@@ -96,7 +98,9 @@ body {
 }
 
 .navbar-static-top {
-    margin-top: $gutter-size;
+    .container {
+        width: auto;
+    }
 }
 
 /* Turn off the hamburger that appears on small screens*/

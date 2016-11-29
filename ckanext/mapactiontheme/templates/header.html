@@ -64,7 +64,7 @@
     <!-- emergency-location bar -->
 	{% set emergencies = h.current_emergencies() %} 
 	<div class="site-emergencies site-emergencies-layout">
-		{% if emergencies == None %}
+		{% if not emergencies %}
 		<span>Error loading emergencies menu</span>
 		{% else %}
 		<h1>
@@ -72,7 +72,7 @@
 			<span class="current-emergency-text">{{ emergencies.name|safe }}</span>
 		</h1>
 		<ul id="menu-current-emergencies" class="menu">
-            {% for emergency in emergencies.get('items') %}
+            {% for emergency in emergencies.get('items', []) %}
             <li id="menu-item-{{ emergency.id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ emergency.id}}">
                 <a href="{{ emergency.url }}">{{ emergency.title|safe }}</a></li>
             {% endfor %}
@@ -90,7 +90,7 @@
       <div class="debug">Controller : {{ c.controller }}<br/>Action : {{ c.action }}</div>
     {% endif %}
   {% endblock %}
-  <div class="container">
+
     <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -100,10 +100,12 @@
     {# The .header-image class hides the main text and uses image replacement for the title #}
     <hgroup class="{{ g.header_class }} pull-left">
 
+    <div class="site-branding site-branding-layout">
       {% block header_logo %}
-        <a class="logo" href="{{ h.home_page_link() if h.home_page_link() else h.url('home') }}"><img src="/logo.svg" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+        <a class="site-logo" href="{{ h.home_page_link() if h.home_page_link() else h.url('home') }}"><img src="/logo.svg" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
         {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
       {% endblock %}
+    </div>
 
     </hgroup>
 
@@ -111,11 +113,11 @@
         <input type="checkbox" id="site-navigation-toggle" name="site-navigation-toggle">
         {% set menu = h.nav_menu() %} 
         {% set this_menu_id = h.nav_menu_this_id() %}
-		{% if menu == None %}
+		{% if not menu %}
 		<span>Error loading main menu</span>
 		{% else %}
         <ul id="primary-menu" class="menu">
-            {% for item in menu.get('items') %}
+            {% for item in menu.get('items', []) %}
             <li id="menu-item-{{ item.id }}" class="menu-item 
                 menu-item-type-custom 
                 menu-item-object-custom 

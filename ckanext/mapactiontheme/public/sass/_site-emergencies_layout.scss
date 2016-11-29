@@ -23,6 +23,7 @@
 	}
 	&::after {
 		position: absolute;
+        top: 0;
 		left: 100%;
 		height: $emergencies-height;
 		@media screen and (max-width: $two_column_min_width) {

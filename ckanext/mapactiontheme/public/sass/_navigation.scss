@@ -29,6 +29,7 @@
 			font-weight: normal;
 			text-transform: none;
 			padding: 0 $gutter-size/2;
+            z-index: 2;
 		}
 	}
 }
@@ -63,7 +64,10 @@
 		width: 100%;
 		background-color: $secondary-blue;
 		border-radius: 4px;
-		z-index: 1;
+		z-index: 2;
+	}
+	ul.sub-menu > li > a:hover {
+		text-decoration: underline;
 	}
 }
 
@@ -72,9 +76,10 @@
 	ul.sub-menu {
 		display: none;
 		margin: 0;
-		width: 100%;
+		min-width: 100%;
 		li {
-			width: 100%;
+			min-width: 100%;
+			white-space: nowrap;
 		}
 	}
 	li:hover {
@@ -83,6 +88,7 @@
 			position: absolute;
 			left: 0;
 			display: block;
+			z-index: 1;
 		}
 	}
 }
@@ -109,72 +115,13 @@
 		> ul > li {
 			text-align: left;
 		}
-		li:hover ul.sub-menu {
-			padding-top: 0;
-		}
-	}
-}
-
-/* 
-
-Layout
-
- */
-
-/* Full width navigation */
-.site-navigation-toggle-label-layout {
-	display: none;
-	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
-	@media screen and (max-width: $three_column_min_width) {
-		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
-	}
-}
-.main-navigation-layout {
-	float: right;
-	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
-	@media screen and (max-width: $three_column_min_width) {
-		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
-	}
-
-	ul, li {
-		display: inline-block;
-	}
-	input {
-		display: none;
-	}
-}
-
-/* Intermediate navigation */
-@media screen and (max-width: $full_menu_min_width) {
-	.main-navigation-layout {
-		float: none;
-		clear: both;
-	}
-}
-
-/* Mobile navigation */
-@media screen and (max-width: $two_column_min_width) {
-	.site-navigation-toggle-label-layout {
-		display: block;
-		float: right;
-	}
-
-	.main-navigation-layout {
-		float: none;
-		clear: both;
-		input[type="checkbox"]:not(:checked) + ul li {
-			display: none;
-		}
-		> ul > li {
+		ul.sub-menu {
 			display: block;
-			text-align: left;
-			margin-top: $gutter-size/2;
+			border: none;
 		}
-
-		ul li:hover ul.sub-menu {
-			left: 100%;
-			top: 0;
+		li:hover ul.sub-menu {
+			position: relative;
+			z-index: 0;
 		}
 	}
 }
-
