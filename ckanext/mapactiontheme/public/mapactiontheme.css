@@ -450,7 +450,8 @@ IMG.dataset-thumbnail {
   overflow: hidden; }
 
 .site-footer {
-  background-image: none; }
+  background-image: none;
+  padding: 0; }
 
 /* Home page */
 .catalog-title {
