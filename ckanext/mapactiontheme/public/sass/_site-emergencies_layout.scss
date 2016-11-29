@@ -1,0 +1,35 @@
+/* Layout of the emergencies bar */
+.site-emergencies-layout {
+	height: $emergencies-height;
+	@media screen and (max-width: $two_column_min_width) {
+		height: $emergencies-height-small;
+	}
+}
+
+/* Create the color bars that spread outside the page width
+   for the emergencies banner */
+.site-emergencies-layout {
+	position: relative;
+	&::before {
+		position: absolute;
+		right: 100%;
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+		}
+		width: $margin-spread;
+		background-color: $primary-blue;
+		content: "";
+	}
+	&::after {
+		position: absolute;
+		left: 100%;
+		height: $emergencies-height;
+		@media screen and (max-width: $two_column_min_width) {
+			height: $emergencies-height-small;
+		}
+		width: $margin-spread;
+		background-color: $primary-red;
+		content: "";
+	}
+}

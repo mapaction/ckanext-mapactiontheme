@@ -1,111 +1,63 @@
 /* CSS for the whole site */
+/* Layout of the page */
+.site-layout {
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: auto; }
+  @media screen and (max-width: 750px) {
+    .site-layout {
+      padding: 0 15px; } }
+
+/* Layout of the header (as a whole) */
+.site-header-layout::after {
+  content: "";
+  display: block;
+  clear: both; }
+
+/* Layout of the emergencies bar */
+.site-emergencies-layout {
+  height: 60px; }
+  @media screen and (max-width: 750px) {
+    .site-emergencies-layout {
+      height: 48px; } }
+
 /* Create the color bars that spread outside the page width
-   for the emergencies banne r*/
+   for the emergencies banner */
 .site-emergencies-layout {
   position: relative; }
   .site-emergencies-layout::before {
     position: absolute;
-    right: 100%; }
+    right: 100%;
+    height: 60px;
+    width: 1000px;
+    background-color: #19458d;
+    content: ""; }
+    @media screen and (max-width: 750px) {
+      .site-emergencies-layout::before {
+        height: 48px; } }
   .site-emergencies-layout::after {
     position: absolute;
-    left: 100%; }
-
-/* Create the arrow in the emergencies banner */
-.site-emergencies-layout > h1 {
-  position: relative; }
-  .site-emergencies-layout > h1::after {
-    position: absolute;
     left: 100%;
-    top: 0; }
-
-.site-emergencies-layout > h1 {
-  display: inline-block;
-  margin: 0;
-  /* Center the text in the emergencie block */ }
-  .site-emergencies-layout > h1 span {
-    margin-top: 16px;
-    display: inline-block;
-    margin-right: 15px; }
+    height: 60px;
+    width: 1000px;
+    background-color: #e53d2f;
+    content: ""; }
     @media screen and (max-width: 750px) {
-      .site-emergencies-layout > h1 span {
-        margin-top: 13px; } }
-  .site-emergencies-layout > h1 .current-emergency-icon {
-    display: none; }
-  @media screen and (max-width: 800px) {
-    .site-emergencies-layout > h1 .current-emergency-icon {
-      display: inline-block; }
-    .site-emergencies-layout > h1 .current-emergency-text {
-      display: none; } }
-.site-emergencies-layout > ul {
-  display: inline-block;
-  padding: 0;
-  margin: 0 0 0 45px; }
-  @media screen and (max-width: 750px) {
-    .site-emergencies-layout > ul {
-      margin: 0 0 0 30px; } }
-.site-emergencies-layout > ul > li {
-  display: inline-block;
-  margin: 0 30px 0 0; }
-  @media screen and (max-width: 800px) {
-    .site-emergencies-layout > ul > li .emergency-type {
-      display: none; } }
-  @media screen and (max-width: 750px) {
-    .site-emergencies-layout > ul > li {
-      margin: 0 15px 0 0; } }
+      .site-emergencies-layout::after {
+        height: 48px; } }
 
-/* Create the color bars that spread outside the page width
-   for the emergencies banne r*/
-.site-emergencies::before {
-  height: 60px;
-  width: 1000px;
-  background-color: #19458d;
-  content: ""; }
-  @media screen and (max-width: 750px) {
-    .site-emergencies::before {
-      height: 48px; } }
-.site-emergencies::after {
-  height: 60px;
-  width: 1000px;
-  background-color: #e53d2f;
-  content: ""; }
-  @media screen and (max-width: 750px) {
-    .site-emergencies::after {
-      height: 48px; } }
-
-/* Create the arrow in the emergencies banner */
-.site-emergencies-layout > h1::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-width: 30px 0 30px 30px;
-  border-color: transparent transparent transparent #19458d;
-  border-style: solid; }
-  @media screen and (max-width: 750px) {
-    .site-emergencies-layout > h1::after {
-      border-width: 24px 0 24px 24px; } }
-
+/* Main styling of the emergencies bar */
 .site-emergencies {
-  height: 60px;
   background-color: #e53d2f; }
-  @media screen and (max-width: 750px) {
-    .site-emergencies {
-      height: 48px; } }
   .site-emergencies > h1 {
     background-color: #19458d;
     color: white;
     text-transform: uppercase;
     font-size: 1rem;
-    font-weight: bold;
-    height: 60px; }
+    font-weight: bold; }
     @media screen and (max-width: 750px) {
       .site-emergencies > h1 {
-        height: 48px;
         font-size: 11pt; } }
-  .site-emergencies > ul {
-    height: 60px; }
-    @media screen and (max-width: 750px) {
-      .site-emergencies > ul {
-        height: 48px; } }
   .site-emergencies > ul > li > a,
   .site-emergencies > ul > li > a:visited {
     font-size: 1rem;
@@ -119,6 +71,75 @@
         font-size: 11pt; } }
   .site-emergencies > ul > li > a:hover {
     text-decoration: underline; }
+
+/* 
+ * Layout of inner components 
+ */
+/* Create the arrow in the emergencies banner */
+.site-emergencies > h1 {
+  position: relative; }
+  .site-emergencies > h1::after {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    content: "";
+    width: 0;
+    height: 0;
+    border-width: 30px 0 30px 30px;
+    border-color: transparent transparent transparent #19458d;
+    border-style: solid; }
+    @media screen and (max-width: 750px) {
+      .site-emergencies > h1::after {
+        border-width: 24px 0 24px 24px; } }
+
+/* Layout of the title of the emergencies bar */
+.site-emergencies h1 {
+  display: inline-block;
+  margin: 0;
+  height: 60px;
+  /* Center the text in the emergencies block */
+  /* Switch between icon and text depending on screen size */ }
+  @media screen and (max-width: 750px) {
+    .site-emergencies h1 {
+      height: 48px; } }
+  .site-emergencies h1 span {
+    margin-top: 16px;
+    display: inline-block;
+    margin-right: 15px; }
+    @media screen and (max-width: 750px) {
+      .site-emergencies h1 span {
+        margin-top: 13px; } }
+  .site-emergencies h1 .current-emergency-icon {
+    display: none; }
+  @media screen and (max-width: 800px) {
+    .site-emergencies h1 .current-emergency-icon {
+      display: inline-block; }
+    .site-emergencies h1 .current-emergency-text {
+      display: none; } }
+
+/* Layout of the text part of the emergencies bar (includes
+   hiding text in smaller screen sizes */
+.site-emergencies > ul {
+  height: 60px;
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 0 45px; }
+  @media screen and (max-width: 750px) {
+    .site-emergencies > ul {
+      height: 48px; } }
+  @media screen and (max-width: 750px) {
+    .site-emergencies > ul {
+      margin: 0 0 0 30px; } }
+
+.site-emergencies > ul > li {
+  display: inline-block;
+  margin: 0 30px 0 0; }
+  @media screen and (max-width: 800px) {
+    .site-emergencies > ul > li .emergency-type {
+      display: none; } }
+  @media screen and (max-width: 750px) {
+    .site-emergencies > ul > li {
+      margin: 0 15px 0 0; } }
 
 /*
  * Navigation main styling
@@ -252,11 +273,72 @@ Layout
     .main-navigation-layout ul li:hover ul.sub-menu {
       left: 100%;
       top: 0; } }
+/* Footer layout */
+.site-footer-layout {
+  min-height: 280px;
+  width: calc( 100% + 2000px );
+  margin-left: -1000px; }
+
+.site-footer-inner-layout {
+  margin-left: 1000px;
+  padding-top: 60px;
+  width: calc( 100% - 2000px ); }
+  .site-footer-inner-layout::after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.site-footer-inner-layout > section {
+  width: 33%;
+  float: left; }
+  .site-footer-inner-layout > section > h2 {
+    margin: 0 0 15px 0; }
+
+@media screen and (max-width: 750px) {
+  .site-footer-inner-layout > section {
+    width: 100%;
+    margin-bottom: 30px;
+    float: none; } }
+.site-footer {
+  background-color: #19458d; }
+
+.site-footer-inner > section {
+  padding: 0 30px;
+  color: white; }
+  .site-footer-inner > section > h2 {
+    font-size: 14pt;
+    font-weight: bold; }
+  .site-footer-inner > section > div {
+    font-size: 12pt;
+    font-weight: normal; }
+  .site-footer-inner > section ul.menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2; }
+    .site-footer-inner > section ul.menu a, .site-footer-inner > section ul.menu a:visited {
+      color: white;
+      text-decoration: none;
+      font-size: 12pt; }
+    .site-footer-inner > section ul.menu a:hover {
+      text-decoration: underline; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden; }
+
 body {
   background-color: white;
   background-image: none;
-  max-width: 950px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative; }
 
 .account-masthead {
   background: white;
@@ -307,24 +389,6 @@ body {
 .wrapper {
   border: 0;
   box-shadow: none; }
-
-.site-footer {
-  background-color: #e3e4ec;
-  color: #000000;
-  min-height: 0px;
-  padding: 0px;
-  font-size: 10px;
-  line-height: 10px;
-  padding-top: 5px; }
-
-.site-footer .span4 {
-  float: right; }
-
-.site-footer a {
-  color: #000000; }
-
-.attribution {
-  text-align: right; }
 
 .dataset-list-thumbnail {
   clear: left;

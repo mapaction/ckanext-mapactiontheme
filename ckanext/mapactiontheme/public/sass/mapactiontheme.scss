@@ -1,11 +1,16 @@
 /* CSS for the whole site */
 
 $gutter-size: 30px;
+$margin-spread: 1000px;
+$site-max-width: 1200px;
+
 $primary-blue: #19458d;
 $primary-red: #e53d2f;
 $secondary-blue: #92b4ec;
+
 $emergencies-height: 60px;
 $emergencies-height-small: $emergencies-height*0.8;
+
 $base-font-size: 14pt;
 $base-font-size-medium: 12pt;
 $base-font-size-small: 11pt;
@@ -19,14 +24,31 @@ $two_column_min_width: 750px;
 $three_column_min_width: 800px;
 $full_menu_min_width: 950px;
 
+$footer-min-height: 280px;
+
+@import "_site_layout";
+@import "_site-emergencies_layout";
 @import "_site-emergencies";
 @import "_navigation";
+@import "_footer_layout";
+@import "_footer";
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
 
 body {
     background-color: white;
     background-image: none;
-    max-width: 950px;
     margin: 0 auto;
+	width: 100%;
+	overflow-x: hidden;
+	position: relative;
 }
 
 
@@ -95,29 +117,6 @@ body {
     border: 0;
     box-shadow: none;
 }
-
-.site-footer {
-    background-color: #e3e4ec;
-    color: #000000;
-    min-height: 0px;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 10px;
-    padding-top: 5px;
-}
-
-.site-footer .span4 {
-    float: right;
-}
-
-.site-footer a {
-    color: #000000;
-}
-
-.attribution {
-    text-align: right;
-}
-
 
 .dataset-list-thumbnail {
     clear: left;
