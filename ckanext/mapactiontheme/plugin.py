@@ -178,6 +178,22 @@ def home_page_link():
     value = config.get('ckan.mapactiontheme.home_page_link')
     return value
 
+
+def nav_menu_this_id():
+    '''The navigation menu item ID of the CKAN site
+
+    To set add this under the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.nav_menu_this_id = 12
+
+    :rtype: string
+    '''
+    value = config.get('ckan.mapactiontheme.nav_menu_this_id')
+    return int(value)
+
+
+
 def wp_json_api(endpoint_setting):
     import requests
     menu = None
@@ -364,4 +380,5 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
                 wp_json_api,
                 endpoint_setting='ckan.mapactiontheme.nav_menu_api'
             ),
+            'nav_menu_this_id': nav_menu_this_id,
         }

@@ -110,12 +110,18 @@
     <nav id="site-navigation" class="main-navigation main-navigation-layout" role="navigation">
         <input type="checkbox" id="site-navigation-toggle" name="site-navigation-toggle">
         {% set menu = h.nav_menu() %} 
+        {% set this_menu_id = h.nav_menu_this_id() %}
 		{% if menu == None %}
 		<span>Error loading main menu</span>
 		{% else %}
         <ul id="primary-menu" class="menu">
             {% for item in menu.get('items') %}
-            <li id="menu-item-{{ item.id }}" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home">
+            <li id="menu-item-{{ item.id }}" class="menu-item 
+                menu-item-type-custom 
+                menu-item-object-custom 
+                {% if item.id == this_menu_id %}current_page_item{% endif %}
+                menu-item-home"
+               >
                 <a href="{{ item.url }}">{{ item.title }}</a>
                 {% set children = item.get('children', []) %} 
                 {% if children %}
