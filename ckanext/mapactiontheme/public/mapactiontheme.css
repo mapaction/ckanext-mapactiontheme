@@ -375,6 +375,9 @@ body {
 p {
   margin: 0 0 1rem; }
 
+.site-footer li {
+  line-height: 1.5; }
+
 label.site-navigation-toggle-label:after {
   content: none; }
 
