@@ -1,0 +1,13 @@
+/* Site branding (logo) section */
+/* Place logo */
+.site-branding-layout {
+	float: left;
+	margin-top: $gutter-size;
+	img {
+		height: $logo-height;
+		@media screen and (max-width: $three_column_min_width) {
+			height: $logo-height-small;
+		}
+	}
+}
+
