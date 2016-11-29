@@ -41,7 +41,11 @@ $footer-min-height: 280px;
 
 html {
     box-sizing: border-box;
+    width: 100%;
     overflow-x: hidden;
+    font-size: 19px;
+    line-height: 1.5;
+    font-family: "Arial", "sans-serif";
 }
 
 body {
@@ -150,6 +154,11 @@ IMG.dataset-thumbnail {
 .dataset-content-inner {
     overflow: hidden;
 }
+
+.site-footer {
+    background-image: none;
+}
+
 
 /* Home page */
 
