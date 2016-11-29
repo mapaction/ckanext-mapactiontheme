@@ -6,6 +6,9 @@ $margin-spread: 1000px;
 $primary-blue: #19458d;
 $primary-red: #e53d2f;
 $secondary-blue: #92b4ec;
+$secondary-green: #32a4a0;
+$secondary-green-light: #dff1f0;
+$secondary-grey-light: #eaeaea;
 
 $emergencies-height: 60px;
 $emergencies-height-small: $emergencies-height*0.8;
@@ -32,6 +35,7 @@ $footer-min-height: 280px;
 @import "_site-branding_layout";
 @import "_navigation";
 @import "_navigation_layout";
+@import "_buttons";
 @import "_footer_layout";
 @import "_footer";
 
@@ -55,6 +59,10 @@ body {
 	width: 100%;
 	overflow-x: hidden;
 	position: relative;
+}
+
+p {
+    margin: 0 0 1rem;
 }
 
 label.site-navigation-toggle-label:after {
