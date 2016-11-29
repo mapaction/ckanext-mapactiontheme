@@ -116,17 +116,16 @@
         <ul id="primary-menu" class="menu">
             {% for item in menu.get('items') %}
             <li id="menu-item-{{ item.id }}" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home">
+                <a href="{{ item.url }}">{{ item.title }}</a>
                 {% set children = item.get('children', []) %} 
                 {% if children %}
-                    {% for child in children %}
                 <ul class="sub-menu">
+                    {% for child in children %}
                     <li id="menu-item-{{ child.id }}" class="menu-item menu-item-type-post_type menu-item-object-page">
                         <a href="{{ child.url }}">{{ child.title }}</a>
                     </li>
-                </ul>
                     {% endfor %}
-                {% else %}
-                <a href="{{ item.url }}">{{ item.title }}</a>
+                </ul>
                 {% endif %}
             </li>
             {% endfor %}
