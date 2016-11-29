@@ -1,24 +1,19 @@
 <footer id="colophon" class="site-footer site-footer-layout" role="contentinfo">
-    <section id="text-3" class="widget widget_text">
-        <h2 class="widget-title">Newsletter</h2>
-        <div class="textwidget">Subscribe to our regular email updates.</div>
-    </section>
-    <section id="text-2" class="widget widget_text">
-        <h2 class="widget-title">MapAction!</h2>
-        <div class="textwidget">
-            Hello World
-            * point one
-            * point two
-        </div>
-    </section>
-    <section id="text-4" class="widget widget_text">
-        <div class="textwidget">Legal and other things</div>
-    </section>
-{% block footer_debug %}
-{% if g.debug %}
-    <section>
-    {% include 'snippets/debug.html' %}
-    </section>
-{% endif %}
-{% endblock %}
+    <div class="site-footer-inner site-footer-inner-layout">
+    {% set widget_sections = h.footer_widget() %} 
+    {% if not widget_sections %}
+		<span>Error loading footer widget</span>
+    {% else %}
+        {% for section in widget_sections.get('widgets', []) %}
+            {{ section.rendered|safe }}
+        {% endfor %}
+    {% endif %}
+    {% block footer_debug %}
+    {% if g.debug %}
+        <section>
+        {% include 'snippets/debug.html' %}
+        </section>
+    {% endif %}
+    {% endblock %}
+    </div>
 </footer>

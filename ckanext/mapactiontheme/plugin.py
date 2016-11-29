@@ -381,4 +381,8 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
                 endpoint_setting='ckan.mapactiontheme.nav_menu_api'
             ),
             'nav_menu_this_id': nav_menu_this_id,
+            'footer_widget': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.footer_widget_api'
+            ),
         }
