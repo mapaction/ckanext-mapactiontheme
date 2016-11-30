@@ -170,16 +170,15 @@
   .main-navigation > ul > li > a {
     font-size: 19px; }
 .main-navigation ul.sub-menu {
-  padding: 15px 0 0 0;
+  padding: 15px 0 11px 0;
   background-color: white;
-  border-bottom: 3px solid #92b4ec;
+  border-bottom: 4px solid #92b4ec;
   border-radius: 2px;
   text-align: left; }
   .main-navigation ul.sub-menu li {
     font-weight: normal;
     text-transform: none;
-    padding: 0 15px;
-    z-index: 2; }
+    padding: 0; }
 
 /*
  * Layout of inner component
@@ -201,13 +200,23 @@
   left: 0;
   bottom: -0.5em;
   content: "";
-  height: 0.3em;
+  height: 4px;
   width: 100%;
   background-color: #92b4ec;
   border-radius: 4px;
   z-index: 2; }
-.main-navigation ul.sub-menu > li > a:hover {
-  text-decoration: underline; }
+.main-navigation ul.sub-menu > li > a {
+  display: block;
+  border-radius: 4px;
+  padding: 0 7.5px; }
+  .main-navigation ul.sub-menu > li > a:hover {
+    background-color: #92b4ec;
+    color: white; }
+.main-navigation ul.sub-menu > li.current-menu-item > a {
+  background-color: #19458d;
+  color: white; }
+  .main-navigation ul.sub-menu > li.current-menu-item > a:hover {
+    background-color: #19458d; }
 
 /* Create the drop down menu magic */
 .main-navigation ul.sub-menu {
@@ -375,6 +384,7 @@ body {
 p {
   margin: 0 0 1rem; }
 
+.main-navigation li,
 .site-footer li {
   line-height: 1.5; }
 

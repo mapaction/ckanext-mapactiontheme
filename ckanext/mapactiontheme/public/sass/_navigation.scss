@@ -20,16 +20,15 @@
 		}
 	}
 	ul.sub-menu {
-		padding: $gutter-size/2 0 0 0;
+		padding: $gutter-size/2 0 $gutter-size/2-4px 0;
 		background-color: white;
-		border-bottom: 3px solid $secondary-blue;
+		border-bottom: 4px solid $secondary-blue;
 		border-radius: 2px;
 		text-align: left;
 		li {
 			font-weight: normal;
 			text-transform: none;
-			padding: 0 $gutter-size/2;
-            z-index: 2;
+			padding: 0;
 		}
 	}
 }
@@ -60,14 +59,27 @@
 		left: 0;
 		bottom: -0.5em;
 		content: "";
-		height: 0.3em;
+		height: 4px;
 		width: 100%;
 		background-color: $secondary-blue;
 		border-radius: 4px;
 		z-index: 2;
 	}
-	ul.sub-menu > li > a:hover {
-		text-decoration: underline;
+	ul.sub-menu > li > a {
+		display: block;
+		border-radius: 4px;
+		padding: 0 $gutter-size/4;
+		&:hover {
+			background-color: $secondary-blue;
+			color: white;
+		}
+	}
+	ul.sub-menu > li.current-menu-item > a {
+		background-color: $primary-blue;
+		color: white;
+		&:hover {
+			background-color: $primary-blue;
+		}
 	}
 }
 
