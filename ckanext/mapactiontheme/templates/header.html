@@ -64,11 +64,14 @@
     <!-- emergency-location bar -->
 	{% set emergencies = h.current_emergencies() %} 
 	<div class="site-emergencies site-emergencies-layout">
+        <div class="site-emergencies-wrapper">
 		{% if not emergencies %}
 		<span>Error loading emergencies menu</span>
 		{% else %}
 		<h1>
-			<span class="current-emergency-icon">(!)</span>
+			<span class="current-emergency-icon">
+                <img src="/emergency_icon.svg">
+            </span>
 			<span class="current-emergency-text">{{ emergencies.name|safe }}</span>
 		</h1>
 		<ul id="menu-current-emergencies" class="menu">
@@ -77,6 +80,7 @@
                 <a href="{{ emergency.url }}">{{ emergency.title|safe }}</a></li>
             {% endfor %}
 		</ul>
+        </div><!-- class="site-emergencies-wrapper" -->
 		{% endif %}
 	</div>
     <!-- /emergency-location bar -->
@@ -137,7 +141,6 @@
 		{% endif %}
     </nav>
 </header>
-
 <header class="navbar masthead">
   <div class="nav-collapse collapse">
     {% block header_site_navigation %}
