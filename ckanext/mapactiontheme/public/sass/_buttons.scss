@@ -1,0 +1,13 @@
+.button, .button:visited, .button:hover {
+	font-size: $base-font-size;
+	font-weight: bold;
+	border-radius: 4px;
+	padding: $gutter-size/2 $gutter-size;
+	color: white;
+	text-decoration: none;
+	background-color: $secondary-green;
+}
+
+.button-important, .button-important:visited, .button-important:hover {
+	background-color: $primary-red;
+}
