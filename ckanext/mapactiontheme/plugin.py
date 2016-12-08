@@ -9,6 +9,8 @@ from ckan.lib.helpers import get_pkg_dict_extra
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+from functools import partial
+
 
 def group_name():
     '''Allows renaming of "Group"
@@ -177,6 +179,42 @@ def home_page_link():
     return value
 
 
+def nav_menu_this_id():
+    '''The navigation menu item ID of the CKAN site
+
+    To set add this under the
+    [app:main] section of your CKAN config file::
+
+      ckan.mapactiontheme.nav_menu_this_id = 12
+
+    :rtype: string
+    '''
+    value = config.get('ckan.mapactiontheme.nav_menu_this_id')
+    return int(value)
+
+
+
+def wp_json_api(endpoint_setting):
+    import requests
+    menu = None
+
+    endpoint_url = config.get(endpoint_setting)
+
+    if endpoint_url is None:
+        raise Exception("Missing setting: %s" % endpoint_setting)
+
+    try:
+        resp = requests.get(endpoint_url, timeout=1.0)
+    except Exception:
+        return None
+
+    try:
+        menu = resp.json()
+    except Exception:
+        pass
+
+    return menu
+
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
 
@@ -302,7 +340,6 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('fanstatic', 'mapactiontheme')
 
     #IAuthFunctions
     def get_auth_functions(self):
@@ -334,5 +371,18 @@ class MapactionthemePlugin(plugins.SingletonPlugin):
             'show_groups_tab': show_groups_tab,
             'show_activity_tab': show_activity_tab,
             'ckan_home_page_name': ckan_home_page_name,
-            'home_page_link': home_page_link
+            'home_page_link': home_page_link,
+            'current_emergencies': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.current_emergencies_api'
+            ),
+            'nav_menu': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.nav_menu_api'
+            ),
+            'nav_menu_this_id': nav_menu_this_id,
+            'footer_widget': partial(
+                wp_json_api,
+                endpoint_setting='ckan.mapactiontheme.footer_widget_api'
+            ),
         }

@@ -1,0 +1,51 @@
+/* Full width navigation */
+.site-navigation-toggle-label-layout {
+	display: none;
+	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
+	@media screen and (max-width: $three_column_min_width) {
+		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
+	}
+}
+.main-navigation-layout {
+	float: right;
+	margin-top: #{ $gutter-size + ( $logo-height - $base-line-height * $base-font-size ) / 2 };
+	@media screen and (max-width: $three_column_min_width) {
+		margin-top: #{ $gutter-size + ( $logo-height-small - $base-line-height * $base-font-size ) / 2 };
+	}
+
+	ul, li {
+		display: inline-block;
+	}
+	input {
+		display: none;
+	}
+}
+
+/* Intermediate navigation */
+@media screen and (max-width: $full_menu_min_width) {
+	.main-navigation-layout {
+		float: none;
+		clear: both;
+	}
+}
+
+/* Mobile navigation */
+@media screen and (max-width: $two_column_min_width) {
+	.site-navigation-toggle-label-layout {
+		display: block;
+		float: right;
+	}
+
+	.main-navigation-layout {
+		float: none;
+		clear: both;
+		input[type="checkbox"]:not(:checked) + ul li {
+			display: none;
+		}
+		> ul > li {
+			display: block;
+			text-align: left;
+			margin-top: $gutter-size/2;
+		}
+	}
+}
