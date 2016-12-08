@@ -4,6 +4,7 @@ body {
     background-color: #676767;
     max-width: 950px;
     margin: 0 auto;
+    overflow:hidden;
 }
 
 .masthead {
