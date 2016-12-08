@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block breadcrumb_content %}
+  {% block breadcrumb_content_inner %}
+    <li>{% link_for _('All Maps and Data'), controller='organization', action='read', id=organization.name %}</li>
+    <li class="active">{% link_for _('Manage'), controller='organization', action='edit', id=organization.name %}</li>
+  {% endblock %}
+{% endblock %}

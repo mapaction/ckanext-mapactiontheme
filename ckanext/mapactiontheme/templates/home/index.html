@@ -1,0 +1,42 @@
+{% ckan_extends %}
+
+{% block content %}
+    <div role="main">
+        <div id="content" class="container">
+
+            <div class="toolbar">
+              {% block breadcrumb %}
+                  <ol class="breadcrumb">
+                    {% snippet 'snippets/home_breadcrumb_item.html' %}
+                    {% block breadcrumb_content %}{% endblock %}
+                  </ol>
+              {% endblock %}
+            </div>
+
+        <div class="catalog-title">
+            <h1>{{ h.ckan_home_page_name() }}</h1>
+        <div class="featured-actions">
+          {% if c.userobj %}
+          {% link_for _('All Maps and Data'), controller='organization', action='read', id='mapaction', class_='btn btn-link' %}
+          {% endif %}
+
+          {% if h.check_access('group_create') %}
+            {% link_for _('Add Event'), controller='ckanext.mapactionevent.controllers.event_groupcontroller:EventGroupController', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+          {% endif %}
+
+          {% if h.check_access('package_create') %}
+            {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+          {% endif %}
+
+        {% snippet "mapactionimporter/snippets/import_button.html" %}
+        </div>
+        <div class="mapaction-feed">
+          <a href="{{ h.url_for('mapaction_georss_dataset') }}"><i class="ckan-icon ckan-icon-feed"></i><span>{{ _('MapAction RSS') }}</span></a>
+        </div>
+        </div>
+
+    {{ super() }}
+
+        </div>
+    </div>
+{% endblock %}

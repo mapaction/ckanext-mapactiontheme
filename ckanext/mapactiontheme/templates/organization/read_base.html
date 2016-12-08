@@ -1,0 +1,5 @@
+{% ckan_extends %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('All Maps and Data'), controller='organization', action='read', id=c.group_dict.name %}</li>
+{% endblock %}
