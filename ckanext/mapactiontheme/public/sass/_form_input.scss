@@ -1,0 +1,10 @@
+/* Form Input */
+$text-field-height: 20px;
+$text-field-vertical-padding: 4px;
+$text-field-padded-height: $text-field-height + 2 * $text-field-vertical-padding;
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    height: $text-field-padded-height;
+}
