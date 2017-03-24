@@ -193,7 +193,6 @@ def nav_menu_this_id():
     return int(value)
 
 
-
 def wp_json_api(endpoint_setting):
     import requests
     menu = None
@@ -223,6 +222,7 @@ def wp_json_api(endpoint_setting):
         pass
 
     return menu
+
 
 def unauthorized(context, data_dict=None):
     return {'success': False, 'msg': 'Organizations are not available.'}
@@ -274,7 +274,6 @@ def _get_dataset_date(dataset_dict):
                 pass
 
     return created_date.strftime('%m/%d/%Y')
-
 
 
 def _get_group_ids(dataset_dict):
