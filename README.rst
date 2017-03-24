@@ -76,12 +76,71 @@ To install ckanext-mapactiontheme:
 Config Settings
 ---------------
 
-Document any optional config settings here. For example::
+::
 
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.mapactiontheme.some_setting = some_default_value
+    # Allow renaming of 'Group'
+    # (optional, default: Group)
+    ckan.mapactiontheme.group_name = MyGroupName
 
+    # Allow renaming of 'Group' in plural form
+    # (optional, default: the above suffixed with 's')
+    ckan.mapactiontheme.plural_group_name = MyGroupNames
+
+    # Show the section to follow datasets
+    # (optional, default: True)
+    ckan.mapactiontheme.show_follows = False
+
+    # Show the license section
+    # (optional, default: True)
+    ckan.mapactiontheme.show_license = False
+
+    # Show the entire concept of organizations
+    # (optional, default: True)
+    ckan.mapactiontheme.show_organization = False
+
+    # Show the social links section
+    # (optional, default: True)
+    ckan.mapactiontheme.show_social = False
+
+    # Show the groups tab eg in package_read template
+    # (optional, default: True)
+    ckan.mapactiontheme.show_groups_tab = False
+
+    # Show the activity tab eg in package_read template
+    # (optional, default: True)
+    ckan.mapactiontheme.show_activity_tab = False
+
+    # The name of the CKAN home page
+    # (optional, default: Home)
+    ckan.mapactiontheme.ckan_home_page_name = Maps and Data
+
+    # The link for the home page if CKAN is deployed as part of another site
+    # (mandatory)
+    ckan.mapactiontheme.home_page_link = http://mapaction.org
+
+    # The navigation menu ID of the CKAN site
+    # (mandatory)
+    ckan.mapactiontheme.nav_menu_this_id = 12
+
+    # Connect timeout when retrieving content from WordPress API
+    # (optional, default: 3.05)
+    ckan.mapactiontheme.api_connect_timeout = 1
+
+    # Read timeout when retrieving content from WordPress API
+    # (optional, default: 3)
+    ckan.mapactiontheme.read_timeout = 27
+
+    # URL for current emergencies content
+    # (mandatory)
+    ckan.mapactiontheme.current_emergencies_api = http://www.example.com/api/
+
+    # URL for navigation menu content
+    # (mandatory)
+    ckan.mapactiontheme.nav_menu_api = http://www.example.com/api/
+
+    # URL for footer widget content
+    # (mandatory)
+    ckan.mapactiontheme.footer_widget_api = http://www.example.com/api/
 
 ------------------------
 Development Installation
