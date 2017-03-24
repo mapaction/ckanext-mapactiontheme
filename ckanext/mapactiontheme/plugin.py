@@ -203,8 +203,17 @@ def wp_json_api(endpoint_setting):
     if endpoint_url is None:
         raise Exception("Missing setting: %s" % endpoint_setting)
 
+    # http://docs.python-requests.org/en/master/user/advanced/#advanced
+    # It's a good practice to set connect timeouts to slightly larger
+    # than a multiple of 3, which is the default TCP packet retransmission
+    # window.
+    connect_timeout = float(config.get(
+        'ckan.mapactiontheme.api_connect_timeout', 3.05))
+    read_timeout = float(config.get('ckan.mapactiontheme.api_read_timeout', 3))
+
     try:
-        resp = requests.get(endpoint_url, timeout=1.0)
+        resp = requests.get(endpoint_url, timeout=(connect_timeout,
+                                                   read_timeout))
     except Exception:
         return None
 
