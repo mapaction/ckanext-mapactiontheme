@@ -103,7 +103,11 @@ class UpdateForSyndicationTest(unittest.TestCase):
                               dataset_date)
 
     def test_dataset_source_is_datasource(self):
-        datasource = 'Situational data: N/ABoundaries: GADMSettlements: GeofabrikPhysical features: GeofabrikWaterways: Geofabrik<ITA>add data sources here (concise list)</ITA>'
+        datasource = (
+            'Situational data: N/ABoundaries: GADMSettlements: '
+            'GeofabrikPhysical features: GeofabrikWaterways: '
+            'Geofabrik<ITA>add data sources here (concise list)</ITA>'
+        )
 
         dataset_dict = {
             'extras': [{
@@ -119,7 +123,11 @@ class UpdateForSyndicationTest(unittest.TestCase):
                           datasource)
 
     def test_groups_set_from_countries(self):
-        countries = 'ETHIOPIA, Uganda, Kenya, Tanzania, Malawi, Mozambique, Zambia, Zaire, Zimbabwe, Somalia, Sudan, Yemen, Djibouti, Eritrea, A made up country'
+        countries = (
+            'ETHIOPIA, Uganda, Kenya, Tanzania, Malawi, Mozambique, Zambia, '
+            'Zaire, Zimbabwe, Somalia, Sudan, Yemen, Djibouti, Eritrea, '
+            'A made up country'
+        )
 
         dataset_dict = {
             'extras': [{
@@ -178,7 +186,13 @@ class UpdateForSyndicationTest(unittest.TestCase):
                           'Other')
 
     def test_method_other_set_to_methodology(self):
-        methodology = "The 'visited' coordinates come from the international Urban Search and Rescue (USAR) team reports as provided to the Virtual OSOCC and to the USAR coordination centre and are from GPS. The 'to visit' sites come from the government of Nepal as a list of names to which we have attempted to assign coordinates."
+        methodology = (
+            "The 'visited' coordinates come from the international Urban "
+            "Search and Rescue (USAR) team reports as provided to the Virtual "
+            "OSOCC and to the USAR coordination centre and are from GPS. "
+            "The 'to visit' sites come from the government of Nepal as a list "
+            "of names to which we have attempted to assign coordinates."
+        )
 
         dataset_dict = {
             'extras': [{
