@@ -1,3 +1,4 @@
+import nose.tools
 import unittest
 
 from ckan.common import _
@@ -5,6 +6,14 @@ import ckan.tests.helpers as helpers
 import ckan.plugins as plugins
 
 from ckanext.mapactiontheme.plugin import MapactionthemePlugin
+import ckanext.mapactiontheme.tests.helpers as custom_helpers
+import ckanext.mapactiontheme.tests.factories as custom_factories
+
+assert_equal = nose.tools.assert_equal
+assert_false = nose.tools.assert_false
+assert_raises = nose.tools.assert_raises
+assert_regexp_matches = nose.tools.assert_regexp_matches
+assert_true = nose.tools.assert_true
 
 
 class DatasetFacetsTest(unittest.TestCase):
@@ -74,33 +83,21 @@ class OrganizationFacetsTest(unittest.TestCase):
         self.assertEquals(facets_dict, {})
 
 
-class UpdateForSyndicationTest(unittest.TestCase):
-    def setUp(self):
-        super(UpdateForSyndicationTest, self).setUp()
-        plugins.load('mapactiontheme')
+class TestUpdateForSyndication(custom_helpers.FunctionalTestBaseClass):
+    def test_schema_createdate_transformed_to_hdx_date(self):
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',
+            'datasource': 'Test',  # Required value
+        }
 
-    def tearDown(self):
-        plugins.unload('mapactiontheme')
-        super(UpdateForSyndicationTest, self).tearDown()
+        dataset_dict = custom_factories.Dataset(**metadata)
 
-    def test_dataset_date_is_created_date(self):
-        dates = (('0000-00-00 00:00:00', '01/01/2003'),
-                 ('15/06/2009 00:00', '06/15/2009'),
-                 ('2016-06-15 03:49:19', '06/15/2016'))
+        updated_dict = helpers.call_action(
+            'update_dataset_for_syndication',
+            dataset_dict=dataset_dict
+        )
 
-        for (createdate, dataset_date) in dates:
-            dataset_dict = {
-                'extras': [{
-                    'key': 'createdate',
-                    'value': createdate},
-                ]
-            }
-
-            updated_dict = helpers.call_action('update_dataset_for_syndication',
-                                               dataset_dict=dataset_dict)
-
-            self.assertEquals(updated_dict['dataset_date'],
-                              dataset_date)
+        assert_equal(updated_dict['dataset_date'], '08/02/2016')
 
     def test_dataset_source_is_datasource(self):
         datasource = (
@@ -109,18 +106,18 @@ class UpdateForSyndicationTest(unittest.TestCase):
             'Geofabrik<ITA>add data sources here (concise list)</ITA>'
         )
 
-        dataset_dict = {
-            'extras': [{
-                'key': 'datasource',
-                'value': datasource},
-            ]
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',  # required field
+            'datasource': datasource,
         }
 
-        updated_dict = helpers.call_action('update_dataset_for_syndication',
-                                           dataset_dict=dataset_dict)
+        dataset_dict = custom_factories.Dataset(**metadata)
+        updated_dict = helpers.call_action(
+            'update_dataset_for_syndication',
+            dataset_dict=dataset_dict
+        )
 
-        self.assertEquals(updated_dict['dataset_source'],
-                          datasource)
+        assert_equal(updated_dict['dataset_source'], datasource)
 
     def test_groups_set_from_countries(self):
         countries = (
@@ -129,17 +126,18 @@ class UpdateForSyndicationTest(unittest.TestCase):
             'A made up country'
         )
 
-        dataset_dict = {
-            'extras': [{
-                'key': 'countries',
-                'value': countries},
-            ]
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',
+            'datasource': 'Test',  # Required value
+            'countries': countries,
         }
+
+        dataset_dict = custom_factories.Dataset(**metadata)
 
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict=dataset_dict)
 
-        self.assertEquals(
+        assert_equal(
             updated_dict['groups'],
             [
                 {'id': 'eth'},
@@ -161,17 +159,22 @@ class UpdateForSyndicationTest(unittest.TestCase):
     def test_groups_default_to_world_for_no_valid_countries(self):
         countries = 'Zaire, A made up country'
 
-        dataset_dict = {
-            'extras': [{
-                'key': 'countries',
-                'value': countries},
-            ]
+        metadata = {
+            'countries': countries,
         }
+
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',
+            'datasource': 'Test',  # Required value
+            'countries': countries,
+        }
+
+        dataset_dict = custom_factories.Dataset(**metadata)
 
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict=dataset_dict)
 
-        self.assertEquals(
+        assert_equal(
             updated_dict['groups'],
             [
                 {'id': 'world'},
@@ -182,10 +185,9 @@ class UpdateForSyndicationTest(unittest.TestCase):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={})
 
-        self.assertEquals(updated_dict['methodology'],
-                          'Other')
+        assert_equal(updated_dict['methodology'], 'Other')
 
-    def test_method_other_set_to_methodology(self):
+    def test_methodology_other_set_to_methodology(self):
         methodology = (
             "The 'visited' coordinates come from the international Urban "
             "Search and Rescue (USAR) team reports as provided to the Virtual "
@@ -194,25 +196,29 @@ class UpdateForSyndicationTest(unittest.TestCase):
             "of names to which we have attempted to assign coordinates."
         )
 
-        dataset_dict = {
-            'extras': [{
-                'key': 'methodology',
-                'value': methodology},
-            ]
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',  # Reqired field
+            'datasource': 'Test',  # Required field
+            'methodology': methodology,
         }
 
-        updated_dict = helpers.call_action('update_dataset_for_syndication',
-                                           dataset_dict=dataset_dict)
+        dataset_dict = custom_factories.Dataset(**metadata)
 
-        self.assertEquals(
+        updated_dict = helpers.call_action(
+            'update_dataset_for_syndication',
+            dataset_dict=dataset_dict
+        )
+
+        assert_equal(
             updated_dict['methodology_other'],
-            methodology)
+            methodology
+        )
 
-    def test_method_other_set_to_placeholder_if_no_extras(self):
+    def test_method_other_set_to_placeholder_if_no_values(self):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={})
 
-        self.assertEquals(
+        assert_equal(
             updated_dict['methodology_other'],
             'Not specified')
 
@@ -220,7 +226,7 @@ class UpdateForSyndicationTest(unittest.TestCase):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={})
 
-        self.assertEquals(
+        assert_equal(
             updated_dict['data_update_frequency'],
             '0')
 
@@ -228,10 +234,25 @@ class UpdateForSyndicationTest(unittest.TestCase):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={'tags': []})
 
-        self.assertTrue('tags' not in updated_dict)
+        assert_true('tags' not in updated_dict)
 
     def test_extras_removed(self):
         updated_dict = helpers.call_action('update_dataset_for_syndication',
                                            dataset_dict={'extras': []})
 
-        self.assertTrue('extras' not in updated_dict)
+        assert_true('extras' not in updated_dict)
+
+    def test_other_fields_removed(self):
+        metadata = {
+            'createdate': '2016-02-08T12:18:24+01:30',  # Reqired field
+            'datasource': 'Test',  # Required field
+            'glideno': 'glideno',
+        }
+
+        dataset_dict = custom_factories.Dataset(**metadata)
+        updated_dict = helpers.call_action(
+            'update_dataset_for_syndication',
+            dataset_dict=dataset_dict
+        )
+
+        assert_true('glideno' not in updated_dict)

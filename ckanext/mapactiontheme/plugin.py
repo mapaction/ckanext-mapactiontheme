@@ -1,3 +1,4 @@
+import dateutil.parser
 from datetime import datetime
 
 import pycountry
@@ -8,6 +9,7 @@ from ckan.lib.helpers import get_pkg_dict_extra
 
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.logic.schema import default_create_package_schema
 
 from functools import partial
 
@@ -233,53 +235,49 @@ def authorized(context, data_dict=None):
 
 
 def update_dataset_for_hdx_syndication(context, data_dict):
+    default_schema = default_create_package_schema()
     dataset_dict = data_dict['dataset_dict']
 
-    dataset_dict['dataset_date'] = _get_dataset_date(dataset_dict)
+    # Copy only the default schema fields and values
+    syndicated_dataset = dict(
+        (k, dataset_dict[k]) for k in default_schema.keys()
+        if k in dataset_dict
+    )
 
-    dataset_dict['methodology'] = 'Other'
-    methodology = get_pkg_dict_extra(dataset_dict, 'methodology')
-    if methodology is None:
-        dataset_dict['methodology_other'] = 'Not specified'
+    # Set creation date in HDX format
+    try:
+        date = dateutil.parser.parse(dataset_dict['createdate'])
+    except:
+        dataset_date = '01/01/2003'  # Consistent with previous implementation
     else:
-        dataset_dict['methodology_other'] = methodology
+        dataset_date = date.strftime('%d/%m/%Y')
 
-    dataset_dict['dataset_source'] = get_pkg_dict_extra(
-        dataset_dict, 'datasource')
+    syndicated_dataset['dataset_date'] = dataset_date
 
-    dataset_dict['groups'] = _get_group_ids(dataset_dict)
+    # Set Methodology
+    methodology = dataset_dict.get('methodology')
+    if methodology is None:
+        syndicated_dataset['methodology_other'] = 'Not specified'
+    else:
+        syndicated_dataset['methodology_other'] = methodology
+    syndicated_dataset['methodology'] = 'Other'
 
-    dataset_dict['data_update_frequency'] = '0'  # Never
+    syndicated_dataset['dataset_source'] = dataset_dict.get('datasource')
 
-    dataset_dict.pop('tags', None)
-    dataset_dict.pop('extras', None)
+    syndicated_dataset['groups'] = _get_group_ids(dataset_dict)
 
-    return dataset_dict
+    syndicated_dataset['data_update_frequency'] = '0'  # Never
 
+    syndicated_dataset.pop('tags', None)
+    syndicated_dataset.pop('extras', None)
 
-def _get_dataset_date(dataset_dict):
-    created = get_pkg_dict_extra(dataset_dict, 'createdate')
-
-    created_date = datetime(2003, 1, 1)
-
-    if created is not None:
-        try:
-            created_date = datetime.strptime(created,
-                                             '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            try:
-                created_date = datetime.strptime(created,
-                                                 '%d/%m/%Y %H:%M')
-            except ValueError:
-                pass
-
-    return created_date.strftime('%m/%d/%Y')
+    return syndicated_dataset
 
 
 def _get_group_ids(dataset_dict):
     group_ids = []
 
-    countries = get_pkg_dict_extra(dataset_dict, 'countries')
+    countries = dataset_dict.get('countries')
 
     if countries is not None:
         for country_name in countries.split(','):
