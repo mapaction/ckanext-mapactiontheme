@@ -268,6 +268,7 @@ def update_dataset_for_hdx_syndication(context, data_dict):
 
     syndicated_dataset['data_update_frequency'] = '0'  # Never
 
+    syndicated_dataset.pop('type', None)
     syndicated_dataset.pop('tags', None)
     syndicated_dataset.pop('extras', None)
 
