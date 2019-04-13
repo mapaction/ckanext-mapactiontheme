@@ -1,0 +1,19 @@
+<footer id="colophon" class="site-footer site-footer-layout" role="contentinfo">
+    <div class="site-footer-inner site-footer-inner-layout">
+    {% set widget_sections = h.footer_widget() %} 
+    {% if not widget_sections %}
+		<span>Error loading footer widget</span>
+    {% else %}
+        {% for section in widget_sections.get('widgets', []) %}
+            {{ section.rendered|safe }}
+        {% endfor %}
+    {% endif %}
+    {% block footer_debug %}
+    {% if g.debug %}
+        <section>
+        {% include 'snippets/debug.html' %}
+        </section>
+    {% endif %}
+    {% endblock %}
+    </div>
+</footer>

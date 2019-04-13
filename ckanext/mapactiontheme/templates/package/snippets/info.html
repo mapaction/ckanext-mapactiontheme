@@ -1,0 +1,27 @@
+{% ckan_extends %}
+
+  {% block heading %}
+    {% set thumbnail = h.thumbnail_url(c.current_package_id) %}
+    {% if  thumbnail %}
+      <div>
+        <img class="dataset-thumbnail" src="{{ thumbnail }}">
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block nums %}
+    {# override to allow config file to set visibility #}
+    {% if h.show_follows() %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+
+  {% block follow_button %}
+    {# override to allow config file to set visibility #}
+    {% if h.show_follows() %}
+      {{ super() }}
+    {% endif %}
+  {% endblock %}
+
+
