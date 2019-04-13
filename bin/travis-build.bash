@@ -20,7 +20,7 @@ sudo apt-get update -qq
 sudo apt-get install solr-tomcat
 
 # Use this command to install the required packages:
-sudo apt-get install python-dev  python-pip python-virtualenv git-core openjdk-8-jdk redis-serv
+sudo apt-get install python-dev  python-pip python-virtualenv git-core openjdk-8-jdk redis-server
 
 echo "Installing CKAN and its Python dependencies..."
 git clone https://github.com/ckan/ckan
