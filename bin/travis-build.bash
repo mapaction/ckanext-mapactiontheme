@@ -18,9 +18,6 @@ sudo apt-get update -qq
 
 # Install Tomcat:
 sudo apt-get install solr-tomcat
- 
-# To restart tomcat:
-sudo service tomcat8 restart
 
 # Use this command to install the required packages:
 sudo apt-get install python-dev  python-pip python-virtualenv git-core openjdk-8-jdk redis-serv
