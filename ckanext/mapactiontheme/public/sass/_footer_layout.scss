@@ -1,0 +1,33 @@
+/* Footer layout */
+.site-footer-layout {
+	min-height: $footer-min-height;
+	width: calc( 100% + #{ 2 * $margin-spread } );
+	margin-left: -$margin-spread;
+}
+
+.site-footer-inner-layout {
+	margin-left: $margin-spread;
+	padding-top: 2*$gutter-size;
+	width: calc( 100% - #{ 2 * $margin-spread } );
+	&::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+.site-footer-inner-layout > section {
+	width: 33%;
+	float: left;
+	> h2 {
+		margin: 0 0 $gutter-size/2 0;
+	}
+}
+
+@media screen and (max-width: $two_column_min_width) {
+	.site-footer-inner-layout > section {
+		width: 100%;
+		margin-bottom: $gutter-size;
+		float: none;
+	}
+}

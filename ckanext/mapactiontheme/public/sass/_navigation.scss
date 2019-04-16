@@ -1,0 +1,139 @@
+/*
+ * Navigation main styling
+ */
+.main-navigation {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li > a {
+		color: $primary-blue;
+		text-decoration: none;
+	}
+	> ul > li {
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+		> a {
+			font-size: $base-font-size;
+		}
+	}
+	ul.sub-menu {
+		padding: $gutter-size/2 0 $gutter-size/2-4px 0;
+		background-color: white;
+		border-bottom: 4px solid $secondary-blue;
+		border-radius: 2px;
+		text-align: left;
+		li {
+			font-weight: normal;
+			text-transform: none;
+			padding: 0;
+		}
+	}
+}
+
+/*
+ * Layout of inner component
+ * Note that default rules are for full width - overrides follow
+ */
+
+/* General layout */
+.main-navigation {
+	> ul > li {
+		margin-right: $gutter-size;
+		@media screen and (max-width: $three_column_min_width) {
+			margin-right: $gutter-size/2;
+		}
+	}
+}
+
+/* Create the hover underline effect */
+.main-navigation {
+	> ul > li > a {
+		position: relative;
+	}
+	> ul > li:hover > a::after,
+	> ul > li.current_page_item > a::after {
+		position: absolute;
+		left: 0;
+		bottom: -0.5em;
+		content: "";
+		height: 4px;
+		width: 100%;
+		background-color: $secondary-blue;
+		border-radius: 4px;
+		z-index: 2;
+	}
+	ul.sub-menu > li > a {
+		display: block;
+		border-radius: 4px;
+		padding: 0 $gutter-size/4;
+		&:hover {
+			background-color: $secondary-blue;
+			color: white;
+		}
+	}
+	ul.sub-menu > li.current-menu-item > a {
+		background-color: $primary-blue;
+		color: white;
+		&:hover {
+			background-color: $primary-blue;
+		}
+	}
+}
+
+/* Create the drop down menu magic */
+.main-navigation {
+	ul.sub-menu {
+		display: none;
+		margin: 0;
+		min-width: 100%;
+		li {
+			min-width: 100%;
+			white-space: nowrap;
+		}
+	}
+	li:hover {
+		position: relative;
+		ul.sub-menu {
+			position: absolute;
+			left: 0;
+			display: block;
+			z-index: 1;
+		}
+	}
+}
+
+/* Navigation for intermediate width layout */
+@media screen and (max-width: $full_menu_min_width) {
+	.main-navigation > ul > li  a {
+		font-size: $base-font-size-medium;
+	}
+}
+
+/* Mobile navigation */
+@media screen and (max-width: $two_column_min_width) {
+	.site-navigation-toggle-label {
+		font-size: $base-font-size-small;
+		text-transform: uppercase;
+		border: 1px solid $secondary-blue;
+		border-radius: 4px;
+		padding: 5px;
+		color: $primary-blue;
+	}
+
+	.main-navigation {
+		> ul > li {
+			text-align: left;
+		}
+		ul.sub-menu {
+			display: block;
+			border: none;
+		}
+		li:hover ul.sub-menu {
+			position: relative;
+			z-index: 0;
+		}
+	}
+}

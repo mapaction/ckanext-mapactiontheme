@@ -23,11 +23,11 @@ sudo apt-get install solr-tomcat
 sudo apt-get install python-dev  python-pip python-virtualenv git-core openjdk-8-jdk redis-server
 
 echo "Installing CKAN and its Python dependencies..."
-git clone https://github.com/ckan/ckan
+git clone https://github.com/aptivate/ckan
 cd ckan
-export latest_ckan_release_branch=`git branch --all | grep remotes/origin/release-v | sort -r | sed 's/remotes\/origin\///g' | head -n 1`
-echo "CKAN branch: $latest_ckan_release_branch"
-git checkout $latest_ckan_release_branch
+export ckan_branch=mapaction-dev
+echo "CKAN branch: $ckan_branch"
+git checkout $ckan_branch
 python setup.py develop
 pip install -r requirements.txt
 pip install -r dev-requirements.txt 
